@@ -1,0 +1,6 @@
+VAR
+	gAxisAxial : ACP10AXIS_typ;
+	gAxisSideLoad : ACP10AXIS_typ;
+	gMain : Main_Type;
+	i0 : USINT;
+END_VAR

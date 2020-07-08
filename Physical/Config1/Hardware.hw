@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.7.2.98?>
+<Hardware xmlns="http://br-automation.co.at/AS/Hardware">
+  <Module Name="8EAC0150.003-1" Type="8EAC0150.003-1" Version="2.2.0.2">
+    <Connection Connector="SS" TargetModule="8EI8X8HWT10.xxxx-1" TargetConnector="SS1" />
+    <Connection Connector="EC1" TargetModule="8LSA46.DB060S200-3" TargetConnector="EC" />
+  </Module>
+  <Module Name="8EI8X8HWT10.xxxx-1" Type="8EI8X8HWT10.xxxx-1" Version="2.3.0.2">
+    <Connection Connector="PLK1" TargetModule="X20CP1382" TargetConnector="IF3">
+      <Cable Type="PowerlinkCable" Length="10" Version="1.0.0.2" />
+    </Connection>
+    <Connection Connector="EC2" TargetModule="8LSA37.DB060S000-3" TargetConnector="EC" />
+    <Connection Connector="MT2" TargetModule="8LSA37.DB060S000-3" TargetConnector="MT" />
+    <Parameter ID="MotionTP" Value="Acp10Arnc0" />
+    <Parameter ID="BothEndSwitchesAreNormallyOpen_r1" Value="on" />
+    <Parameter ID="QuickStopIsNormallyOpen_r1" Value="on" />
+    <Parameter ID="BothEndSwitchesAreNormallyOpen_r2" Value="on" />
+    <Parameter ID="QuickStopIsNormallyOpen_r2" Value="on" />
+  </Module>
+  <Module Name="8LSA37.DB060S000-3" Type="8LSA37.DB060S000-3" Version="1.0.5.34">
+    <Connection Connector="EC" TargetModule="8EI8X8HWT10.xxxx-1" TargetConnector="EC2" />
+    <Connection Connector="MT" TargetModule="8EI8X8HWT10.xxxx-1" TargetConnector="MT2" />
+  </Module>
+  <Module Name="8LSA46.DB060S200-3" Type="8LSA46.DB060S200-3" Version="1.0.8.37">
+    <Connection Connector="EC" TargetModule="8EAC0150.003-1" TargetConnector="EC1" />
+    <Connection Connector="MT" TargetModule="8EI8X8HWT10.xxxx-1" TargetConnector="MT1" />
+  </Module>
+  <Module Name="X20AI1744" Type="X20AI1744" Version="1.8.4.0">
+    <Connection Connector="SS1" TargetModule="X20TB12" TargetConnector="SS" />
+    <Connection Connector="SL" TargetModule="X20BM11" TargetConnector="SL1" />
+  </Module>
+  <Module Name="X20BM11" Type="X20BM11" Version="1.0.0.1">
+    <Connection Connector="X2X1" TargetModule="X20CP1382" TargetConnector="IF6" />
+  </Module>
+  <Module Name="X20CP1382" Type="X20CP1382" Version="1.8.0.0">
+    <Module Name="X1" Type="X1" Virtual="true" Version="1.8.0.0">
+      <Connection Connector="SS1" TargetModule="X20TB1F" TargetConnector="SS" />
+      <Connection Connector="SL" TargetModule="X20CP1382" TargetConnector="X1" />
+    </Module>
+    <Module Name="X2" Type="X2" Virtual="true" Version="1.8.0.0">
+      <Connection Connector="SS1" TargetModule="X20TB1F1" TargetConnector="SS" />
+      <Connection Connector="SL" TargetModule="X20CP1382" TargetConnector="X2" />
+    </Module>
+    <Module Name="X3" Type="X3" Virtual="true" Version="1.8.0.0">
+      <Connection Connector="SS1" TargetModule="X20TB1F2" TargetConnector="SS" />
+      <Connection Connector="SL" TargetModule="X20CP1382" TargetConnector="X3" />
+    </Module>
+    <Connection Connector="X1" TargetModule="X1" TargetConnector="SL" />
+    <Connection Connector="X2" TargetModule="X2" TargetConnector="SL" />
+    <Connection Connector="X3" TargetModule="X3" TargetConnector="SL" />
+    <Connector Name="IF2">
+      <Parameter ID="ActivateDevice" Value="1" />
+      <Group ID="Vnc1" />
+      <Parameter ID="VncVcObjectName1" Value="Visu" />
+      <Parameter ID="VncKeyMappingFile1" Value="VC\PS2-Keyboard.dis" />
+    </Connector>
+    <Connector Name="IF3">
+      <Parameter ID="CycleTime" Value="1000" />
+    </Connector>
+    <Parameter ID="ConfigurationID" Value="ULATolo3_Config1" />
+    <Parameter ID="Simulation" Value="1" />
+    <Parameter ID="TimerDeviceType" Value="EPLX2X" />
+    <Parameter ID="TimerDevice" Value="X20CP1382.IF3" />
+    <Parameter ID="Cyclic1Duration" Value="1000" />
+    <Parameter ID="Cyclic1Tolerance" Value="0" />
+  </Module>
+  <Module Name="X20TB12" Type="X20TB12" Version="1.0.0.0" />
+  <Module Name="X20TB1F" Type="X20TB1F" Version="1.0.0.0" />
+  <Module Name="X20TB1F1" Type="X20TB1F" Version="1.0.0.0" />
+  <Module Name="X20TB1F2" Type="X20TB1F" Version="1.0.0.0" />
+</Hardware>
