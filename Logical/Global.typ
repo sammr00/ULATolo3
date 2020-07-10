@@ -9,6 +9,7 @@ TYPE
 		MpAlarmXCore_FB : MpAlarmXCore;
 	END_STRUCT;
 	InputPhysical_Type : 	STRUCT 
+		LoadtoTorqueScaleFactor : REAL;
 		StrainGauge : DINT;
 	END_STRUCT;
 	Output_Type : 	STRUCT 
@@ -16,6 +17,8 @@ TYPE
 		Vis : OutputVis_Type;
 	END_STRUCT;
 	OutputVis_Type : 	STRUCT 
+		DisplayedForceFeedback : REAL;
+		LoadCellScaleFactor : REAL;
 		CalculatedForce : REAL;
 	END_STRUCT;
 	OutputPhysical_Type : 	STRUCT 
@@ -31,6 +34,10 @@ TYPE
 		ManualMoveButton : BOOL;
 		StartProgramButton : BOOL;
 		AutoCommandedAxialPosition : REAL;
+		PowerOnButtonVisibility : USINT;
+		JogButtonVisibility : USINT;
+		StopButtonVisibility : USINT;
+		StartButtonVisability : USINT;
 		PowerOnAll : BOOL;
 	END_STRUCT;
 	Input_Type : 	STRUCT 

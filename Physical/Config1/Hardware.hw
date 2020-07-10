@@ -28,6 +28,7 @@
   <Module Name="X20AI1744" Type="X20AI1744" Version="1.8.4.0">
     <Connection Connector="SS1" TargetModule="X20TB12" TargetConnector="SS" />
     <Connection Connector="SL" TargetModule="X20BM11" TargetConnector="SL1" />
+    <Parameter ID="Supervision" Value="off" />
   </Module>
   <Module Name="X20BM11" Type="X20BM11" Version="1.0.0.1">
     <Connection Connector="X2X1" TargetModule="X20CP1382" TargetConnector="IF6" />
