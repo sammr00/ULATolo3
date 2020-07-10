@@ -56,9 +56,13 @@
     </Connector>
     <Connector Name="IF3">
       <Parameter ID="CycleTime" Value="1000" />
+      <Group ID="Channel1" />
+      <Parameter ID="ChannelID1" Value="APC10_MC_BROADCAST" />
+      <Parameter ID="ChannelType1" Value="OCTET[8]" />
     </Connector>
     <Parameter ID="ConfigurationID" Value="ULATolo3_Config1" />
     <Parameter ID="Simulation" Value="1" />
+    <Parameter ID="VolatileGlobalPvSize" Value="6553500" />
     <Parameter ID="TimerDeviceType" Value="EPLX2X" />
     <Parameter ID="TimerDevice" Value="X20CP1382.IF3" />
     <Parameter ID="Cyclic1Duration" Value="1000" />

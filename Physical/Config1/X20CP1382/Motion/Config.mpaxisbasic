@@ -13,6 +13,7 @@
           <Property ID="VelocityNegative" Value="10000.0" />
           <Property ID="Acceleration" Value="50000.0" />
           <Property ID="Deceleration" Value="50000" />
+          <Property ID="JerkTime" Value="0.1" />
         </Group>
       </Group>
       <Group ID="Drive">
@@ -30,5 +31,7 @@
     </Selector>
     <Selector ID="Alarms" Value="MpAlarmX" />
   </Element>
-  <Element ID="gAxisBasicSideLoad" Type="mpaxisbasic" />
+  <Element ID="gAxisBasicSideLoad" Type="mpaxisbasic">
+    <Selector ID="Alarms" Value="MpAlarmX" />
+  </Element>
 </Configuration>

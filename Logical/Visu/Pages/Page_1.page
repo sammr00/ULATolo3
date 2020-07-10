@@ -611,6 +611,25 @@
           <Property Name="VirtualKey" Value="Source[local].VirtualKey[%embVirtualKey_2]"/>
           <Property Name="Width" Value="350"/>
         </Control>
+        <Control ClassId="0x00001002" Name="Button_3">
+          <Property Name="BitmapIndexDatapoint" Value="None"/>
+          <Property Name="BitmapSource" Value="None"/>
+          <Property Name="ControlID" Value="0"/>
+          <Property Name="Description" Value=""/>
+          <Property Name="EmbVirtualKey" Value="Source[local].VirtualKey[%embVirtualKey_5]"/>
+          <Property Name="Height" Value="118"/>
+          <Property Name="KeyMatrixOffset" Value="None"/>
+          <Property Name="Left" Value="133"/>
+          <Property Name="PressedBitmapSource" Value="Source[embedded].Property[BitmapSource]"/>
+          <Property Name="PressedTextSource" Value="Source[embedded].Property[TextSource]"/>
+          <Property Name="StyleClass" Value="Source[relative:StyleGroup].StyleClass[MpButtonUp]"/>
+          <Property Name="TextIndexDatapoint" Value="None"/>
+          <Property Name="TextSimulationValue" Value="0"/>
+          <Property Name="TextSource" Value="None"/>
+          <Property Name="Top" Value="906"/>
+          <Property Name="VirtualKey" Value="Source[local].VirtualKey[%embVirtualKey_5]"/>
+          <Property Name="Width" Value="166"/>
+        </Control>
       </Controls>
       <KeyMapping>
         <VirtualKey Name="%embVirtualKey_233">
@@ -643,21 +662,6 @@
             </KeyAction>
           </KeyActions>
         </VirtualKey>
-        <VirtualKey Name="%embVirtualKey_2">
-          <Property Name="Description" Value=""/>
-          <Property Name="VirtualKey_LED" Value="False"/>
-          <KeyActions>
-            <KeyAction ClassId="0x00000161">
-              <Property Name="CompletionDatapoint" Value="None"/>
-              <Property Name="CompletionValue" Value="0"/>
-              <Property Name="Description" Value=""/>
-              <Property Name="Locking" Value="Never"/>
-              <Property Name="Name" Value="Action_0"/>
-              <Property Name="SetValue" Value="1"/>
-              <Property Name="ValueDatapoint" Value="Source[global].Variable[DataSource.gMain.Input.Vis.PowerOnAll]"/>
-            </KeyAction>
-          </KeyActions>
-        </VirtualKey>
         <VirtualKey Name="%embVirtualKey_1">
           <Property Name="Description" Value=""/>
           <Property Name="VirtualKey_LED" Value="False"/>
@@ -673,21 +677,62 @@
             </KeyAction>
           </KeyActions>
         </VirtualKey>
+        <VirtualKey Name="%embVirtualKey_2">
+          <Property Name="Description" Value=""/>
+          <Property Name="VirtualKey_LED" Value="False"/>
+          <KeyActions>
+            <KeyAction ClassId="0x00000161">
+              <Property Name="CompletionDatapoint" Value="None"/>
+              <Property Name="CompletionValue" Value="0"/>
+              <Property Name="Description" Value=""/>
+              <Property Name="Locking" Value="Never"/>
+              <Property Name="Name" Value="Action_0"/>
+              <Property Name="SetValue" Value="1"/>
+              <Property Name="ValueDatapoint" Value="Source[global].Variable[DataSource.gMain.Input.Vis.PowerOnAll]"/>
+            </KeyAction>
+          </KeyActions>
+        </VirtualKey>
+        <VirtualKey Name="%embVirtualKey_5">
+          <Property Name="Description" Value=""/>
+          <Property Name="VirtualKey_LED" Value="False"/>
+          <KeyActions>
+            <KeyAction ClassId="0x00000160">
+              <Property Name="Description" Value=""/>
+              <Property Name="Locking" Value="Never"/>
+              <Property Name="Name" Value="Action_0"/>
+              <Property Name="Page" Value="Source[local].Page[Page_1]"/>
+              <Property Name="Target" Value="Page"/>
+            </KeyAction>
+          </KeyActions>
+        </VirtualKey>
       </KeyMapping>
     </Layer>
+    <LayerRef Source="Source[local].Layer[AlarmPopup]">
+      <Property Name="Description" Value=""/>
+      <Property Name="EditingMode" Value="Frozen"/>
+      <Property Name="Left" Value="0"/>
+      <Property Name="Name" Value="AlarmPopup"/>
+      <Property Name="OutlineColor" Value="0"/>
+      <Property Name="OutlineDisplayControl" Value="False"/>
+      <Property Name="OutlineDisplayName" Value="True"/>
+      <Property Name="OutlineHatched" Value="False"/>
+      <Property Name="Top" Value="0"/>
+      <Property Name="VisibilityMode" Value="Outline"/>
+      <Property Name="Z-Order" Value="1"/>
+    </LayerRef>
   </Layers>
   <MovementOrder>
     <MovementEntry Control="Source[embedded].Layer[Default].Control[Numeric_1]">
       <Property Name="Down" Value="Source[embedded].Layer[Default].Control[Numeric_6]"/>
       <Property Name="Left" Value="Source[embedded].Layer[Default].Control[Dropdown_1]"/>
-      <Property Name="Right" Value="Source[embedded].Layer[Default].Control[Numeric_3]"/>
+      <Property Name="Right" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmCode]"/>
       <Property Name="Up" Value="Source[embedded].Layer[Default].Control[Dropdown_1]"/>
     </MovementEntry>
     <MovementEntry Control="Source[embedded].Layer[Default].Control[Numeric_2]">
       <Property Name="Down" Value="Source[embedded].Layer[Default].Control[Numeric_1]"/>
       <Property Name="Left" Value="Source[embedded].Layer[Default].Control[Numeric_3]"/>
       <Property Name="Right" Value="Source[embedded].Layer[Default].Control[Numeric_3]"/>
-      <Property Name="Up" Value="Source[embedded].Layer[Default].Control[Numeric_6]"/>
+      <Property Name="Up" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmTimestamp]"/>
     </MovementEntry>
     <MovementEntry Control="Source[embedded].Layer[Default].Control[Numeric_3]">
       <Property Name="Down" Value="Source[embedded].Layer[Default].Control[Dropdown_1]"/>
@@ -696,16 +741,46 @@
       <Property Name="Up" Value="Source[embedded].Layer[Default].Control[Dropdown_1]"/>
     </MovementEntry>
     <MovementEntry Control="Source[embedded].Layer[Default].Control[Numeric_6]">
-      <Property Name="Down" Value="Source[embedded].Layer[Default].Control[Numeric_2]"/>
+      <Property Name="Down" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmTimestamp]"/>
       <Property Name="Left" Value="Source[embedded].Layer[Default].Control[Dropdown_1]"/>
-      <Property Name="Right" Value="Source[embedded].Layer[Default].Control[Numeric_3]"/>
+      <Property Name="Right" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmCode]"/>
       <Property Name="Up" Value="Source[embedded].Layer[Default].Control[Numeric_1]"/>
     </MovementEntry>
     <MovementEntry Control="Source[embedded].Layer[Default].Control[Dropdown_1]">
-      <Property Name="Down" Value="Source[embedded].Layer[Default].Control[Numeric_3]"/>
-      <Property Name="Left" Value="Source[embedded].Layer[Default].Control[Numeric_1]"/>
-      <Property Name="Right" Value="Source[embedded].Layer[Default].Control[Numeric_2]"/>
+      <Property Name="Down" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmCode]"/>
+      <Property Name="Left" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmMessage]"/>
+      <Property Name="Right" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmTimestamp]"/>
       <Property Name="Up" Value="Source[embedded].Layer[Default].Control[Numeric_3]"/>
+    </MovementEntry>
+    <MovementEntry Control="Source[local].Layer[AlarmPopup].Control[lbxAlarmMessage]">
+      <Property Name="Down" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmCode]"/>
+      <Property Name="Left" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmName]"/>
+      <Property Name="Right" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmCode]"/>
+      <Property Name="Up" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmCode]"/>
+    </MovementEntry>
+    <MovementEntry Control="Source[local].Layer[AlarmPopup].Control[lbxAlarmCode]">
+      <Property Name="Down" Value="Source[embedded].Layer[Default].Control[Numeric_3]"/>
+      <Property Name="Left" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmMessage]"/>
+      <Property Name="Right" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmStatus]"/>
+      <Property Name="Up" Value="Source[embedded].Layer[Default].Control[Dropdown_1]"/>
+    </MovementEntry>
+    <MovementEntry Control="Source[local].Layer[AlarmPopup].Control[lbxAlarmStatus]">
+      <Property Name="Down" Value="Source[embedded].Layer[Default].Control[Numeric_3]"/>
+      <Property Name="Left" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmCode]"/>
+      <Property Name="Right" Value="Source[embedded].Layer[Default].Control[Numeric_3]"/>
+      <Property Name="Up" Value="Source[embedded].Layer[Default].Control[Dropdown_1]"/>
+    </MovementEntry>
+    <MovementEntry Control="Source[local].Layer[AlarmPopup].Control[lbxAlarmTimestamp]">
+      <Property Name="Down" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmName]"/>
+      <Property Name="Left" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmStatus]"/>
+      <Property Name="Right" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmName]"/>
+      <Property Name="Up" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmName]"/>
+    </MovementEntry>
+    <MovementEntry Control="Source[local].Layer[AlarmPopup].Control[lbxAlarmName]">
+      <Property Name="Down" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmMessage]"/>
+      <Property Name="Left" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmTimestamp]"/>
+      <Property Name="Right" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmMessage]"/>
+      <Property Name="Up" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmMessage]"/>
     </MovementEntry>
   </MovementOrder>
   <TabSequence>
@@ -718,5 +793,10 @@
     <TabSeqItem Index="6" Value="Source[embedded].Layer[Default].Control[Numeric_7]"/>
     <TabSeqItem Index="7" Value="Source[embedded].Layer[Default].Control[Dropdown_1]"/>
     <TabSeqItem Index="8" Value="Source[embedded].Layer[Default].Control[Numeric_8]"/>
+    <TabSeqItem Index="9" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmMessage]"/>
+    <TabSeqItem Index="10" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmStatus]"/>
+    <TabSeqItem Index="11" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmTimestamp]"/>
+    <TabSeqItem Index="12" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmName]"/>
+    <TabSeqItem Index="13" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmCode]"/>
   </TabSequence>
 </Page>
