@@ -112,6 +112,8 @@ PROGRAM _CYCLIC
 			gMain.Machine.Motion.MpAxisBasic_FB[gMain.Input.Vis.AxisSelector].JogPositive:=gMain.Input.Vis.JogPos;
 			gMain.Machine.Motion.MpAxisBasic_FB[gMain.Input.Vis.AxisSelector].JogNegative:=gMain.Input.Vis.JogNeg;
 			
+			
+			//Manual Move Logic
 			IF gMain.Input.Vis.ManualMoveButton AND NOT gMain.Machine.Motion.AxialMove.MC_MoveAbsoluteFB_Axial.Done AND NOT gMain.Machine.Motion.SideLoad.MpAxisCyclicSet_FB.Info.TorqueControl.InTorque THEN
 				gMain.Machine.Motion.AxialMove.CyclicCommandedPosition:=gMain.Input.Vis.ManualCommandedAxialPosition-18.2;
 				gMain.Machine.Motion.AxialMove.MC_MoveAbsoluteFB_Axial.Execute:=TRUE;
@@ -121,6 +123,10 @@ PROGRAM _CYCLIC
 			ELSIF gMain.Input.Vis.ManualMoveButton AND gMain.Machine.Motion.AxialMove.MC_MoveAbsoluteFB_Axial.Done AND gMain.Machine.Motion.SideLoad.MpAxisCyclicSet_FB.Info.TorqueControl.InTorque THEN
 				gMain.Machine.Motion.AxialMove.MC_MoveAbsoluteFB_Axial.Execute:=FALSE;
 				gMain.Machine.Motion.SideLoad.EnableCyclicTorque:=FALSE;
+			END_IF;
+			
+			IF gMain.Input.Vis.ManualReturnButton THEN
+				//Need to finish
 			END_IF;
 			
 		Running:
@@ -214,6 +220,8 @@ PROGRAM _CYCLIC
 	
 	IF gMain.Input.Vis.StartProgramButton THEN
 		gMain.Machine.Motion.SideLoad.EnableCyclicTorque:=TRUE;
+	ELSE
+		gMain.Machine.Motion.SideLoad.EnableCyclicTorque:=FALSE;
 	END_IF;
 		
 	

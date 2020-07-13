@@ -985,6 +985,66 @@
     </Control>
   </Controls>
   <KeyMapping>
+    <VirtualKey Name="%embVirtualKey_196">
+      <Property Name="Description" Value=""/>
+      <Property Name="VirtualKey_LED" Value="False"/>
+      <KeyActions>
+        <KeyAction ClassId="0x00000161">
+          <Property Name="CompletionDatapoint" Value="None"/>
+          <Property Name="CompletionValue" Value="0"/>
+          <Property Name="Description" Value=""/>
+          <Property Name="Locking" Value="Never"/>
+          <Property Name="Name" Value="Action_0"/>
+          <Property Name="SetValue" Value="1"/>
+          <Property Name="ValueDatapoint" Value="Source[global].Variable[DataSource.gMain.Machine.Alarm.MpAlarmXListUIConnectType.AlarmList.PageUp]"/>
+        </KeyAction>
+      </KeyActions>
+    </VirtualKey>
+    <VirtualKey Name="%embVirtualKey_197">
+      <Property Name="Description" Value=""/>
+      <Property Name="VirtualKey_LED" Value="False"/>
+      <KeyActions>
+        <KeyAction ClassId="0x00000161">
+          <Property Name="CompletionDatapoint" Value="None"/>
+          <Property Name="CompletionValue" Value="0"/>
+          <Property Name="Description" Value=""/>
+          <Property Name="Locking" Value="Never"/>
+          <Property Name="Name" Value="Action_0"/>
+          <Property Name="SetValue" Value="1"/>
+          <Property Name="ValueDatapoint" Value="Source[global].Variable[DataSource.gMain.Machine.Alarm.MpAlarmXListUIConnectType.AlarmList.PageDown]"/>
+        </KeyAction>
+      </KeyActions>
+    </VirtualKey>
+    <VirtualKey Name="%embVirtualKey_198">
+      <Property Name="Description" Value=""/>
+      <Property Name="VirtualKey_LED" Value="False"/>
+      <KeyActions>
+        <KeyAction ClassId="0x00000161">
+          <Property Name="CompletionDatapoint" Value="None"/>
+          <Property Name="CompletionValue" Value="0"/>
+          <Property Name="Description" Value=""/>
+          <Property Name="Locking" Value="Never"/>
+          <Property Name="Name" Value="Action_0"/>
+          <Property Name="SetValue" Value="1"/>
+          <Property Name="ValueDatapoint" Value="Source[global].Variable[DataSource.gMain.Machine.Alarm.MpAlarmXListUIConnectType.AlarmList.StepUp]"/>
+        </KeyAction>
+      </KeyActions>
+    </VirtualKey>
+    <VirtualKey Name="%embVirtualKey_199">
+      <Property Name="Description" Value=""/>
+      <Property Name="VirtualKey_LED" Value="False"/>
+      <KeyActions>
+        <KeyAction ClassId="0x00000161">
+          <Property Name="CompletionDatapoint" Value="None"/>
+          <Property Name="CompletionValue" Value="0"/>
+          <Property Name="Description" Value=""/>
+          <Property Name="Locking" Value="Never"/>
+          <Property Name="Name" Value="Action_0"/>
+          <Property Name="SetValue" Value="1"/>
+          <Property Name="ValueDatapoint" Value="Source[global].Variable[DataSource.gMain.Machine.Alarm.MpAlarmXListUIConnectType.AlarmList.StepDown]"/>
+        </KeyAction>
+      </KeyActions>
+    </VirtualKey>
     <VirtualKey Name="%embVirtualKey_212">
       <Property Name="Description" Value=""/>
       <Property Name="VirtualKey_LED" Value="False"/>
@@ -1038,66 +1098,6 @@
           <Property Name="Name" Value="Action_0"/>
           <Property Name="Page" Value="Source[local].Page[MpAlarmXHistory]"/>
           <Property Name="Target" Value="Page"/>
-        </KeyAction>
-      </KeyActions>
-    </VirtualKey>
-    <VirtualKey Name="%embVirtualKey_197">
-      <Property Name="Description" Value=""/>
-      <Property Name="VirtualKey_LED" Value="False"/>
-      <KeyActions>
-        <KeyAction ClassId="0x00000161">
-          <Property Name="CompletionDatapoint" Value="None"/>
-          <Property Name="CompletionValue" Value="0"/>
-          <Property Name="Description" Value=""/>
-          <Property Name="Locking" Value="Never"/>
-          <Property Name="Name" Value="Action_0"/>
-          <Property Name="SetValue" Value="1"/>
-          <Property Name="ValueDatapoint" Value="Source[global].Variable[DataSource.gMain.Machine.Alarm.MpAlarmXListUIConnectType.AlarmList.PageDown]"/>
-        </KeyAction>
-      </KeyActions>
-    </VirtualKey>
-    <VirtualKey Name="%embVirtualKey_199">
-      <Property Name="Description" Value=""/>
-      <Property Name="VirtualKey_LED" Value="False"/>
-      <KeyActions>
-        <KeyAction ClassId="0x00000161">
-          <Property Name="CompletionDatapoint" Value="None"/>
-          <Property Name="CompletionValue" Value="0"/>
-          <Property Name="Description" Value=""/>
-          <Property Name="Locking" Value="Never"/>
-          <Property Name="Name" Value="Action_0"/>
-          <Property Name="SetValue" Value="1"/>
-          <Property Name="ValueDatapoint" Value="Source[global].Variable[DataSource.gMain.Machine.Alarm.MpAlarmXListUIConnectType.AlarmList.StepDown]"/>
-        </KeyAction>
-      </KeyActions>
-    </VirtualKey>
-    <VirtualKey Name="%embVirtualKey_198">
-      <Property Name="Description" Value=""/>
-      <Property Name="VirtualKey_LED" Value="False"/>
-      <KeyActions>
-        <KeyAction ClassId="0x00000161">
-          <Property Name="CompletionDatapoint" Value="None"/>
-          <Property Name="CompletionValue" Value="0"/>
-          <Property Name="Description" Value=""/>
-          <Property Name="Locking" Value="Never"/>
-          <Property Name="Name" Value="Action_0"/>
-          <Property Name="SetValue" Value="1"/>
-          <Property Name="ValueDatapoint" Value="Source[global].Variable[DataSource.gMain.Machine.Alarm.MpAlarmXListUIConnectType.AlarmList.StepUp]"/>
-        </KeyAction>
-      </KeyActions>
-    </VirtualKey>
-    <VirtualKey Name="%embVirtualKey_196">
-      <Property Name="Description" Value=""/>
-      <Property Name="VirtualKey_LED" Value="False"/>
-      <KeyActions>
-        <KeyAction ClassId="0x00000161">
-          <Property Name="CompletionDatapoint" Value="None"/>
-          <Property Name="CompletionValue" Value="0"/>
-          <Property Name="Description" Value=""/>
-          <Property Name="Locking" Value="Never"/>
-          <Property Name="Name" Value="Action_0"/>
-          <Property Name="SetValue" Value="1"/>
-          <Property Name="ValueDatapoint" Value="Source[global].Variable[DataSource.gMain.Machine.Alarm.MpAlarmXListUIConnectType.AlarmList.PageUp]"/>
         </KeyAction>
       </KeyActions>
     </VirtualKey>

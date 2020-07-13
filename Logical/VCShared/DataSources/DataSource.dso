@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?AutomationStudio Version="4.7.2.98"?>
 <DataSource xmlns="http://br-automation.co.at/AS/VC/Project" Name="DataSource">
-  <Property Name="AutoRefresh" Value="False"/>
+  <Property Name="AutoRefresh" Value="True"/>
   <Property Name="DefaultUpdateTime" Value="200"/>
   <Property Name="Description" Value=""/>
   <Property Name="IsIntern" Value="False"/>
@@ -6275,11 +6275,14 @@
           <DataPoint Name="ManualCommandedAxialPosition">
             <Property Name="ConnectedBySharedResource" Value="False"/>
             <Property Name="ConnectingVisus" Value="Visu"/>
+            <Property Name="DPLimit" Value="Default"/>
             <Property Name="Description" Value=""/>
-            <Property Name="PLCType" Value="USINT"/>
+            <Property Name="PLCType" Value="REAL"/>
+            <Property Name="PLCUnit" Value="Source[relative:UnitGroup].Unit[Inch]"/>
+            <Property Name="UnitGroup" Value="Source[global].UnitGroup[Length]"/>
             <Property Name="UpdateTime" Value="Default"/>
             <Property Name="UserID" Value="None"/>
-            <Property Name="VCType" Value="INTEGER"/>
+            <Property Name="VCType" Value="SCALED"/>
           </DataPoint>
           <DataPoint Name="ManualCommandedSideLoad">
             <Property Name="ConnectedBySharedResource" Value="False"/>
@@ -6347,6 +6350,15 @@
             <Property Name="UserID" Value="None"/>
             <Property Name="VCType" Value="INTEGER"/>
           </DataPoint>
+          <DataPoint Name="ManualReturnButton">
+            <Property Name="ConnectedBySharedResource" Value="False"/>
+            <Property Name="ConnectingVisus" Value="Visu"/>
+            <Property Name="Description" Value=""/>
+            <Property Name="PLCType" Value="BOOL"/>
+            <Property Name="UpdateTime" Value="Default"/>
+            <Property Name="UserID" Value="None"/>
+            <Property Name="VCType" Value="BOOL"/>
+          </DataPoint>
         </Folder>
       </Folder>
       <Folder Name="Machine">
@@ -6364,11 +6376,11 @@
               <DataPoint Name="Position">
                 <Property Name="ConnectedBySharedResource" Value="False"/>
                 <Property Name="ConnectingVisus" Value="Visu"/>
-                <Property Name="DPLimit" Value="None"/>
+                <Property Name="DPLimit" Value="Default"/>
                 <Property Name="Description" Value=""/>
                 <Property Name="PLCType" Value="LREAL"/>
-                <Property Name="PLCUnit" Value="None"/>
-                <Property Name="UnitGroup" Value="None"/>
+                <Property Name="PLCUnit" Value="Source[relative:UnitGroup].Unit[Inch]"/>
+                <Property Name="UnitGroup" Value="Source[global].UnitGroup[Length]"/>
                 <Property Name="UpdateTime" Value="Default"/>
                 <Property Name="UserID" Value="None"/>
                 <Property Name="VCType" Value="SCALED"/>
@@ -6409,6 +6421,7 @@
               <Property Name="FolderType" Value="Struct"/>
               <DataPoint Name="Code">
                 <Property Name="ConnectedBySharedResource" Value="False"/>
+                <Property Name="ConnectingVisus" Value=""/>
                 <Property Name="Description" Value=""/>
                 <Property Name="PLCType" Value="UDINT[0..49]"/>
                 <Property Name="UpdateTime" Value="Default"/>
@@ -6597,6 +6610,7 @@
               </DataPoint>
               <DataPoint Name="StateActive">
                 <Property Name="ConnectedBySharedResource" Value="False"/>
+                <Property Name="ConnectingVisus" Value=""/>
                 <Property Name="Description" Value=""/>
                 <Property Name="PLCType" Value="BOOL[0..49]"/>
                 <Property Name="UpdateTime" Value="Default"/>
@@ -6695,6 +6709,7 @@
               </DataPoint>
               <DataPoint Name="StateAcknowledged">
                 <Property Name="ConnectedBySharedResource" Value="False"/>
+                <Property Name="ConnectingVisus" Value=""/>
                 <Property Name="Description" Value=""/>
                 <Property Name="PLCType" Value="BOOL[0..49]"/>
                 <Property Name="UpdateTime" Value="Default"/>
@@ -6906,6 +6921,7 @@
                 <Property Name="FolderType" Value="Struct"/>
                 <DataPoint Name="RecordID">
                   <Property Name="ConnectedBySharedResource" Value="False"/>
+                  <Property Name="ConnectingVisus" Value=""/>
                   <Property Name="Description" Value=""/>
                   <Property Name="PLCType" Value="UDINT[0..4]"/>
                   <Property Name="UpdateTime" Value="Default"/>
@@ -6964,6 +6980,7 @@
                 </DataPoint>
                 <DataPoint Name="EventID">
                   <Property Name="ConnectedBySharedResource" Value="False"/>
+                  <Property Name="ConnectingVisus" Value=""/>
                   <Property Name="Description" Value=""/>
                   <Property Name="PLCType" Value="DINT[0..4]"/>
                   <Property Name="UpdateTime" Value="Default"/>

@@ -26,7 +26,8 @@ TYPE
 	END_STRUCT;
 	InputVis_Type : 	STRUCT 
 		NumberofCycles : USINT;
-		ManualCommandedAxialPosition : USINT;
+		ManualCommandedAxialPosition : REAL;
+		ManualReturnButton : BOOL;
 		ManualCommandedSideLoad : REAL;
 		AxisSelector : USINT;
 		JogNeg : BOOL;
