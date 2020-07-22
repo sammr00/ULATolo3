@@ -6,5 +6,6 @@
     <Object Type="File" Description="NC manager configuration">Acp10cfg.ncc</Object>
     <Object Type="File" Description="NC operating system">Acp10sys.br</Object>
     <Object Type="File">Config.mpaxisbasic</Object>
+    <Object Type="Package">VC</Object>
   </Objects>
 </Package>

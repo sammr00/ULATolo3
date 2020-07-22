@@ -13,7 +13,8 @@
           <Property ID="VelocityNegative" Value="10000.0" />
           <Property ID="Acceleration" Value="50000.0" />
           <Property ID="Deceleration" Value="50000" />
-          <Property ID="JerkTime" Value="0.1" />
+          <Property ID="JerkTime" Value="0.01" />
+          <Property ID="PositionErrorStopLimit" Value="1000" />
         </Group>
       </Group>
       <Group ID="Drive">

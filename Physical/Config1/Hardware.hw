@@ -12,6 +12,7 @@
     <Connection Connector="EC2" TargetModule="8LSA37.DB060S000-3" TargetConnector="EC" />
     <Connection Connector="MT2" TargetModule="8LSA37.DB060S000-3" TargetConnector="MT" />
     <Parameter ID="MotionTP" Value="Acp10Arnc0" />
+    <Parameter ID="Simulate" Value="complete" />
     <Parameter ID="BothEndSwitchesAreNormallyOpen_r1" Value="on" />
     <Parameter ID="QuickStopIsNormallyOpen_r1" Value="on" />
     <Parameter ID="BothEndSwitchesAreNormallyOpen_r2" Value="on" />

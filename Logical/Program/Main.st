@@ -3,7 +3,7 @@ PROGRAM _INIT
 	gMain.Machine.Motion.MpAxisBasic_FB[Axial](MpLink := ADR(gAxisBasicAxial), Enable := TRUE, Parameters := ADR(gMain.Machine.Motion.MpAxisBasicPar[Axial]), Axis := ADR(gAxisAxial));
 	gMain.Machine.Motion.MpAxisBasic_FB[SideLoad](MpLink :=ADR(gAxisBasicSideLoad), Enable := TRUE, Parameters := ADR(gMain.Machine.Motion.MpAxisBasicPar[SideLoad]), Axis := ADR(gAxisSideLoad));
 	
-	gMain.Machine.Motion.AxialMove.MC_MoveAbsoluteFB_Axial(Axis := ADR(gAxisAxial));
+	gMain.Machine.Motion.AxialMove.MC_MoveAbsoluteFB_Axial(Axis := ADR(gAxisAxial),Direction:=mcSHORTEST_WAY);
 	gMain.Machine.Motion.SideLoad.MpAxisCyclicSet_FB(MpLink := ADR(gAxisBasicSideLoad), Enable := TRUE, Parameters :=ADR(gMain.Machine.Motion.SideLoad.MpAxisCyclicSetParType));
 	
 	gMain.Machine.Alarm.MpAlarmXCore_FB(MpLink :=ADR(gAlarmXCore),Enable := TRUE);
@@ -12,23 +12,26 @@ PROGRAM _INIT
 	gMain.Machine.Motion.MpAxisBasicPar[SideLoad].CyclicRead.TorqueMode:=mpAXIS_READ_CYCLIC;
 	
 	gMain.Machine.Motion.AxialMove.CycleAmplitude:=12.7;
-	gMain.Machine.Motion.AxialMove.TotalTime:=0.165;
+	gMain.Machine.Motion.AxialMove.TotalTime:=0.0825;
 	gMain.Machine.Motion.AxialMove.TotalDistance:=gMain.Machine.Motion.AxialMove.CycleAmplitude*2;
+	gMain.Machine.Motion.AxialMove.PositionOffset:=18.2*25.4;
+	
+	gMain.Machine.Motion.Mc_StopFB[Axial](Axis := ADR(gAxisAxial), Deceleration := 50000);
+	gMain.Machine.Motion.Mc_StopFB[SideLoad](Axis := ADR(gAxisSideLoad), Deceleration := 50000);
 	
 	//Velocity and Acceleration Calculations for Axial Move
 	IF gMain.Machine.Motion.AxialMove.TotalTime<>0.0 THEN
-		gMain.Machine.Motion.AxialMove.Vmax:=5000;  //ABS(gMain.Machine.Motion.AxialMove.TotalDistance/(0.5*(gMain.Machine.Motion.AxialMove.TotalTime)));
-		gMain.Machine.Motion.AxialMove.Amax:=5000;//ABS(gMain.Machine.Motion.AxialMove.Vmax/(0.5*gMain.Machine.Motion.AxialMove.TotalTime));
+		gMain.Machine.Motion.AxialMove.Vmax:=ABS(gMain.Machine.Motion.AxialMove.TotalDistance/(0.5*(gMain.Machine.Motion.AxialMove.TotalTime)));
+		gMain.Machine.Motion.AxialMove.Amax:=ABS(gMain.Machine.Motion.AxialMove.Vmax/(0.5*gMain.Machine.Motion.AxialMove.TotalTime));
 	END_IF;
 	
 	gMain.Machine.Motion.MpAxisBasicPar[Axial].Acceleration:=gMain.Machine.Motion.AxialMove.Amax;
 	gMain.Machine.Motion.MpAxisBasicPar[Axial].Deceleration:=gMain.Machine.Motion.AxialMove.Amax;
 	gMain.Machine.Motion.MpAxisBasicPar[Axial].Velocity:=gMain.Machine.Motion.AxialMove.Vmax;
-	 
 	
-	gMain.Output.Vis.LoadCellScaleFactor:=(0.0000019663)*(2000.0/16.5);
+	gMain.Output.Vis.LoadCellScaleFactor:=(0.0000019663)*(500.0/16.5);
 	
-	gMain.Input.Vis.AutoCommandedAxialPosition:=18.2*25.4;
+	gMain.Input.Vis.AutoCommandedAxialPosition:=gMain.Machine.Motion.AxialMove.PositionOffset;
 END_PROGRAM
 
 PROGRAM _CYCLIC
@@ -36,7 +39,6 @@ PROGRAM _CYCLIC
 	gMain.Machine.Motion.IsHomedAll := TRUE;
 	gMain.Machine.Motion.IsPoweredAll := TRUE;
 	gMain.Machine.Motion.Error := FALSE;
-	
 	
 	//	//Set Jog Velocity
 	//	IF JogVelocity<> gMain.Machine.Motion.AxisPar.Jog.Velocity THEN
@@ -71,6 +73,7 @@ PROGRAM _CYCLIC
 				gMain.Machine.State:=Init;
 			END_IF;
 			gMain.Input.Vis.PowerOnAll:=FALSE;
+			gMain.Output.Vis.StatusLED:=0;
 		Init:
 			IF gMain.Machine.Motion.Error THEN
 				gMain.Machine.State:=Error;
@@ -93,6 +96,7 @@ PROGRAM _CYCLIC
 			ELSIF gMain.Machine.Motion.IsPoweredAll THEN
 				gMain.Machine.State:=Idle;
 			END_IF;
+			gMain.Output.Vis.StatusLED:=1;
 			//			gMain.Input.Vis.PowerButtonVisibility:=FALSE;
 			//			gMain.Input.Vis.StopProgramButton:=FALSE;
 			//			gMain.Input.Vis.StartProgramButton:=FALSE;
@@ -108,6 +112,7 @@ PROGRAM _CYCLIC
 			ELSIF gMain.Input.Vis.StartProgramButton THEN
 				gMain.Machine.State:=Running;
 			END_IF;
+			gMain.Output.Vis.StatusLED:=2;
 			//Jog Logic
 			gMain.Machine.Motion.MpAxisBasic_FB[gMain.Input.Vis.AxisSelector].JogPositive:=gMain.Input.Vis.JogPos;
 			gMain.Machine.Motion.MpAxisBasic_FB[gMain.Input.Vis.AxisSelector].JogNegative:=gMain.Input.Vis.JogNeg;
@@ -115,18 +120,27 @@ PROGRAM _CYCLIC
 			
 			//Manual Move Logic
 			IF gMain.Input.Vis.ManualMoveButton AND NOT gMain.Machine.Motion.AxialMove.MC_MoveAbsoluteFB_Axial.Done AND NOT gMain.Machine.Motion.SideLoad.MpAxisCyclicSet_FB.Info.TorqueControl.InTorque THEN
-				gMain.Machine.Motion.AxialMove.CyclicCommandedPosition:=gMain.Input.Vis.ManualCommandedAxialPosition-18.2;
+				gMain.Machine.Motion.AxialMove.CyclicCommandedPosition:=gMain.Input.Vis.ManualCommandedAxialPosition-gMain.Machine.Motion.AxialMove.PositionOffset;
 				gMain.Machine.Motion.AxialMove.MC_MoveAbsoluteFB_Axial.Execute:=TRUE;
 				
 				gMain.Machine.Motion.SideLoad.MpAxisCyclicSet_FB.Torque:=gMain.Input.Vis.ManualCommandedSideLoad*gMain.Machine.Motion.SideLoad.ScalingFactor;
 				gMain.Machine.Motion.SideLoad.EnableCyclicTorque:=TRUE;
-			ELSIF gMain.Input.Vis.ManualMoveButton AND gMain.Machine.Motion.AxialMove.MC_MoveAbsoluteFB_Axial.Done AND gMain.Machine.Motion.SideLoad.MpAxisCyclicSet_FB.Info.TorqueControl.InTorque THEN
+			ELSIF gMain.Input.Vis.ManualMoveButton AND gMain.Machine.Motion.AxialMove.MC_MoveAbsoluteFB_Axial.Done (*AND gMain.Machine.Motion.SideLoad.MpAxisCyclicSet_FB.Info.TorqueControl.InTorque*) THEN
+				gMain.Input.Vis.ManualMoveButton:=FALSE;
 				gMain.Machine.Motion.AxialMove.MC_MoveAbsoluteFB_Axial.Execute:=FALSE;
 				gMain.Machine.Motion.SideLoad.EnableCyclicTorque:=FALSE;
 			END_IF;
 			
-			IF gMain.Input.Vis.ManualReturnButton THEN
-				//Need to finish
+			IF gMain.Input.Vis.ManualReturnButton AND NOT gMain.Machine.Motion.AxialMove.MC_MoveAbsoluteFB_Axial.Done THEN
+				gMain.Machine.Motion.AxialMove.CyclicCommandedPosition:=0;
+				gMain.Machine.Motion.AxialMove.MC_MoveAbsoluteFB_Axial.Execute:=TRUE;
+				gMain.Machine.Motion.SideLoad.MpAxisCyclicSet_FB.Torque:=gMain.Input.Vis.ManualCommandedSideLoad;
+				gMain.Machine.Motion.SideLoad.EnableCyclicTorque:=TRUE;
+			ELSIF gMain.Input.Vis.ManualReturnButton AND gMain.Machine.Motion.AxialMove.MC_MoveAbsoluteFB_Axial.Done THEN
+				gMain.Machine.Motion.AxialMove.MC_MoveAbsoluteFB_Axial.Execute:=FALSE;
+				gMain.Input.Vis.ManualReturnButton:=FALSE;
+				gMain.Machine.Motion.SideLoad.EnableCyclicTorque:=FALSE;
+				gMain.Machine.Motion.AxialMove.MC_MoveAbsoluteFB_Axial.Execute:=FALSE;
 			END_IF;
 			
 		Running:
@@ -144,6 +158,7 @@ PROGRAM _CYCLIC
 	gMain.Machine.Alarm.MpAlarmXCore_FB(ErrorReset := gMain.Machine.Motion.ErrorResetAll);
 	gMain.Machine.Alarm.MpAlarmXListUI_FB(ErrorReset := gMain.Machine.Motion.ErrorResetAll);
 	gMain.Machine.Alarm.AlarmPopupControl:=BOOL_TO_USINT(NOT UDINT_TO_BOOL(gMain.Machine.Alarm.MpAlarmXCore_FB.ActiveAlarms));
+
 	
 	//Button Visibility
 	gMain.Input.Vis.PowerOnButtonVisibility:=NOT (gMain.Machine.Motion.AllAxisReady);
@@ -157,57 +172,23 @@ PROGRAM _CYCLIC
 		
 	
 	//Axial Movement
-//	IF NOT gMain.Machine.Motion.AxialMove.ChangeDirectionFlag AND gMain.Input.Vis.StartProgramButton AND gMain.Machine.Motion.AxialMove.CycleCount<gMain.Input.Vis.NumberofCycles THEN
-//		IF gMain.Machine.Motion.MpAxisBasic_FB[Axial].Info.MoveDone THEN
-//			gMain.Machine.Motion.AxialMove.ChangeDirectionFlag:=1;
-//			gMain.Machine.Motion.MpAxisBasic_FB[Axial].MoveAbsolute:=FALSE;
-//		ELSE
-//			gMain.Machine.Motion.MpAxisBasicPar[Axial].Position:=gMain.Input.Vis.AutoCommandedAxialPosition+gMain.Machine.Motion.AxialMove.CycleAmplitude;
-//			IF gMain.Machine.Motion.MpAxisBasic_FB[Axial].UpdateDone AND NOT gMain.Machine.Motion.MpAxisBasic_FB[Axial].MoveActive  THEN
-//				gMain.Machine.Motion.MpAxisBasic_FB[Axial].Update:=FALSE;
-//				gMain.Machine.Motion.MpAxisBasic_FB[Axial].MoveAbsolute:=TRUE;
-//			ELSE
-//				gMain.Machine.Motion.MpAxisBasic_FB[Axial].Update:=TRUE;
-//			END_IF;
-//		END_IF;
-//	ELSIF gMain.Machine.Motion.AxialMove.ChangeDirectionFlag AND gMain.Input.Vis.StartProgramButton AND gMain.Machine.Motion.AxialMove.CycleCount<gMain.Input.Vis.NumberofCycles THEN
-//		IF gMain.Machine.Motion.MpAxisBasic_FB[Axial].Info.MoveDone THEN
-//			gMain.Machine.Motion.AxialMove.ChangeDirectionFlag:=0;
-//			gMain.Machine.Motion.MpAxisBasic_FB[Axial].MoveAbsolute:=FALSE;
-//			gMain.Machine.Motion.AxialMove.CycleCount:=gMain.Machine.Motion.AxialMove.CycleCount+1;
-//		ELSE
-//			gMain.Machine.Motion.MpAxisBasicPar[Axial].Position:=gMain.Input.Vis.AutoCommandedAxialPosition-gMain.Machine.Motion.AxialMove.CycleAmplitude;
-//			IF gMain.Machine.Motion.MpAxisBasic_FB[Axial].UpdateDone AND NOT gMain.Machine.Motion.MpAxisBasic_FB[Axial].MoveActive THEN
-//				gMain.Machine.Motion.MpAxisBasic_FB[Axial].Update:=FALSE;
-//				gMain.Machine.Motion.MpAxisBasic_FB[Axial].MoveAbsolute:=TRUE;
-//			ELSE
-//				gMain.Machine.Motion.MpAxisBasic_FB[Axial].Update:=TRUE;
-//			END_IF;
-//			
-//		END_IF;
-//	ELSIF gMain.Machine.Motion.AxialMove.CycleCount=gMain.Input.Vis.NumberofCycles THEN
-//		gMain.Input.Vis.StartProgramButton:=0;
-//		gMain.Machine.Motion.AxialMove.CycleCount:=0;
-//	END_IF;
 	
-	
-	
-	IF NOT gMain.Machine.Motion.AxialMove.ChangeDirectionFlag AND gMain.Input.Vis.StartProgramButton AND gMain.Machine.Motion.AxialMove.CycleCount<gMain.Input.Vis.NumberofCycles AND gMain.Machine.Motion.SideLoad.MpAxisCyclicSet_FB.Info.TorqueControl.InTorque THEN
+	IF NOT gMain.Machine.Motion.AxialMove.ChangeDirectionFlag AND gMain.Input.Vis.StartProgramButton AND gMain.Machine.Motion.AxialMove.CycleCount<gMain.Input.Vis.NumberofCycles (*AND gMain.Machine.Motion.SideLoad.MpAxisCyclicSet_FB.Info.TorqueControl.InTorque*) THEN
 		IF gMain.Machine.Motion.AxialMove.MC_MoveAbsoluteFB_Axial.Done THEN
 			gMain.Machine.Motion.AxialMove.ChangeDirectionFlag:=1;
 			gMain.Machine.Motion.AxialMove.MC_MoveAbsoluteFB_Axial.Execute:=FALSE;
 		ELSE
 			gMain.Machine.Motion.AxialMove.MC_MoveAbsoluteFB_Axial.Execute:=TRUE;
-			gMain.Machine.Motion.AxialMove.CyclicCommandedPosition:=(gMain.Input.Vis.AutoCommandedAxialPosition-18.2)+gMain.Machine.Motion.AxialMove.CycleAmplitude;
+			gMain.Machine.Motion.AxialMove.CyclicCommandedPosition:=(gMain.Input.Vis.AutoCommandedAxialPosition-gMain.Machine.Motion.AxialMove.PositionOffset)+gMain.Machine.Motion.AxialMove.CycleAmplitude;
 		END_IF;
-	ELSIF gMain.Machine.Motion.AxialMove.ChangeDirectionFlag AND gMain.Input.Vis.StartProgramButton AND gMain.Machine.Motion.AxialMove.CycleCount<gMain.Input.Vis.NumberofCycles AND gMain.Machine.Motion.SideLoad.MpAxisCyclicSet_FB.Info.TorqueControl.InTorque THEN
+	ELSIF gMain.Machine.Motion.AxialMove.ChangeDirectionFlag AND gMain.Input.Vis.StartProgramButton AND gMain.Machine.Motion.AxialMove.CycleCount<gMain.Input.Vis.NumberofCycles (*AND gMain.Machine.Motion.SideLoad.MpAxisCyclicSet_FB.Info.TorqueControl.InTorque*) THEN
 		IF gMain.Machine.Motion.AxialMove.MC_MoveAbsoluteFB_Axial.Done THEN
 			gMain.Machine.Motion.AxialMove.ChangeDirectionFlag:=0;
 			gMain.Machine.Motion.AxialMove.MC_MoveAbsoluteFB_Axial.Execute:=FALSE;
 			gMain.Machine.Motion.AxialMove.CycleCount:=gMain.Machine.Motion.AxialMove.CycleCount+1;
 		ELSE
 			gMain.Machine.Motion.AxialMove.MC_MoveAbsoluteFB_Axial.Execute:=TRUE;
-			gMain.Machine.Motion.AxialMove.CyclicCommandedPosition:=(gMain.Input.Vis.AutoCommandedAxialPosition-18.2)-gMain.Machine.Motion.AxialMove.CycleAmplitude;
+			gMain.Machine.Motion.AxialMove.CyclicCommandedPosition:=(gMain.Input.Vis.AutoCommandedAxialPosition-gMain.Machine.Motion.AxialMove.PositionOffset)-gMain.Machine.Motion.AxialMove.CycleAmplitude;
 		END_IF;
 	ELSIF gMain.Machine.Motion.AxialMove.CycleCount=gMain.Input.Vis.NumberofCycles THEN
 		gMain.Input.Vis.StartProgramButton:=0;
@@ -223,15 +204,33 @@ PROGRAM _CYCLIC
 	ELSE
 		gMain.Machine.Motion.SideLoad.EnableCyclicTorque:=FALSE;
 	END_IF;
+	
+	
+	//EStop Logic	
+	IF gMain.Input.Vis.EStop THEN
+		gMain.Input.Vis.EStopPopup:=0;
+		FOR i0:=DINT_TO_USINT(Axial) TO DINT_TO_USINT(SideLoad) DO
+			gMain.Machine.Motion.Mc_StopFB[i0].Execute:=TRUE;
+			IF gMain.Machine.Motion.Mc_StopFB[i0].Done THEN
+				gMain.Input.Vis.PowerOnAll:=FALSE;
+				gMain.Machine.Motion.SideLoad.EnableCyclicTorque:=FALSE;
+				gMain.Machine.Motion.AxialMove.MC_MoveAbsoluteFB_Axial.Execute:=FALSE;
+				gMain.Input.Vis.StartProgramButton:=0;
+				gMain.Machine.Motion.AxialMove.CycleCount:=0;
+			END_IF;
+		END_FOR;
 		
-	
-	
+	ELSE
+		gMain.Input.Vis.EStopPopup:=1;
+		gMain.Machine.Motion.Mc_StopFB[i0].Execute:=FALSE;
+	END_IF;
 	
 	
 	
 	//Motion Function Call
 	FOR i0:=DINT_TO_USINT(Axial) TO DINT_TO_USINT(SideLoad) DO
 		gMain.Machine.Motion.MpAxisBasic_FB[i0](ErrorReset := gMain.Machine.Motion.ErrorResetAll, Power := gMain.Input.Vis.PowerOnAll, Home := gMain.Machine.Motion.HomeAll);
+		gMain.Machine.Motion.Mc_StopFB[i0]();
 	END_FOR;
 	
 	//Axial Move Absolute
@@ -243,6 +242,7 @@ PROGRAM _CYCLIC
 	
 	//MpAxisBasic_0(MpLink := , Enable := , ErrorReset := , Parameters := , Update := , Axis := , Power := , Home := , MoveVelocity := , MoveAbsolute := , MoveAdditive := , Stop := , JogPositive := , JogNegative := , Autotune := , Simulate := , TorqueLimit := , ReleaseBrake := );
 	
+
 	
 END_PROGRAM
 

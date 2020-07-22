@@ -18,6 +18,7 @@ TYPE
 	END_STRUCT;
 	OutputVis_Type : 	STRUCT 
 		DisplayedForceFeedback : REAL;
+		StatusLED : USINT;
 		LoadCellScaleFactor : REAL;
 		CalculatedForce : REAL;
 	END_STRUCT;
@@ -39,6 +40,8 @@ TYPE
 		JogButtonVisibility : USINT;
 		StopButtonVisibility : USINT;
 		StartButtonVisability : USINT;
+		EStopPopup : USINT;
+		EStop : BOOL;
 		PowerOnAll : BOOL;
 	END_STRUCT;
 	Input_Type : 	STRUCT 
@@ -47,6 +50,7 @@ TYPE
 	END_STRUCT;
 	Motion_Type : 	STRUCT 
 		MpAxisBasicPar : ARRAY[Axial..SideLoad]OF MpAxisBasicParType;
+		Mc_StopFB : ARRAY[Axial..SideLoad]OF MC_Stop;
 		MpAxisBasic_FB : ARRAY[Axial..SideLoad]OF MpAxisBasic;
 		Error : BOOL;
 		HomeAll : BOOL;
@@ -83,6 +87,7 @@ TYPE
 		CycleAmplitude : REAL;
 		ChangeDirectionFlag : BOOL;
 		CycleCount : UDINT;
+		PositionOffset : REAL;
 		MC_MoveAbsoluteFB_Axial : MC_MoveAbsolute;
 	END_STRUCT;
 	AxisEnum : 

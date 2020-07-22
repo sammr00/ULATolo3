@@ -54,6 +54,7 @@
     <Source File="Fonts\MpMenuButtons.fninfo"/>
     <Source File="Fonts\MpPads.fninfo"/>
     <Source File="Fonts\MpPackMLStateNames.fninfo"/>
+    <Source File="Fonts\Arial40B.fninfo"/>
     <Source File="Bitmaps\MpAlarm_AcknowledgeReset.bminfo"/>
     <Source File="Bitmaps\MpAlarm_BypassON.bminfo"/>
     <Source File="Bitmaps\MpAlarm_NotQuit.bminfo"/>
@@ -384,6 +385,7 @@
     <Source File="Layers\MpUserXSign.layer"/>
     <Source File="Layers\MpUserXSignMessageBox.layer"/>
     <Source File="Layers\AlarmPopup.layer"/>
+    <Source File="Layers\EStopPopup.layer"/>
     <Source File="StyleSheets\Color.vcs"/>
     <Source File="StyleSheets\mapp.vcs"/>
     <Source File="Borders\Mp_AttentionOff.bdr"/>
