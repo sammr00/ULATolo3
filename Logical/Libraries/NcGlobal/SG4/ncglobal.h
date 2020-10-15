@@ -1,4 +1,4 @@
-/* ncglobal.h V5.08.2 */ 
+/* ncglobal.h V5.10.1 */ 
 /* COPYRIGHT (C) B&R Industrial Automation GmbH */ 
 
 /* Automation Studio generated header file */
@@ -175,6 +175,7 @@
  #define nc157CAN 9U
  #define nc158CAN 7U
  #define nc20KHZ 0U
+ #define nc2ENCOD_SPEED 5U
  #define ncA_LIMIT 20U
  #define ncA_MOVE 10U
  #define ncABORT_DATA 8U
@@ -491,6 +492,7 @@
  #define ncMM 0U
  #define ncMOD_DIR 128U
  #define ncMOD_SYNC 303U
+ #define ncMODEL_1MASS 4U
  #define ncMODEL_2MASS 3U
  #define ncMODULE 3U
  #define ncMOTOR 140U
@@ -968,6 +970,7 @@
  _IEC_CONST unsigned short nc157CAN = 9U;
  _IEC_CONST unsigned short nc158CAN = 7U;
  _IEC_CONST unsigned char nc20KHZ = 0U;
+ _IEC_CONST unsigned short nc2ENCOD_SPEED = 5U;
  _IEC_CONST unsigned char ncA_LIMIT = 20U;
  _IEC_CONST unsigned char ncA_MOVE = 10U;
  _IEC_CONST unsigned char ncABORT_DATA = 8U;
@@ -1284,6 +1287,7 @@
  _IEC_CONST unsigned char ncMM = 0U;
  _IEC_CONST unsigned char ncMOD_DIR = 128U;
  _IEC_CONST unsigned short ncMOD_SYNC = 303U;
+ _IEC_CONST unsigned short ncMODEL_1MASS = 4U;
  _IEC_CONST unsigned short ncMODEL_2MASS = 3U;
  _IEC_CONST unsigned short ncMODULE = 3U;
  _IEC_CONST unsigned short ncMOTOR = 140U;

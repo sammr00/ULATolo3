@@ -1,6 +1,6 @@
 /* Automation Studio generated header file */
 /* Do not edit ! */
-/* MpAlarmX 5.08.1 */
+/* MpAlarmX 5.10.1 */
 
 #ifndef _MPALARMX_
 #define _MPALARMX_
@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 #ifndef _MpAlarmX_VERSION
-#define _MpAlarmX_VERSION 5.08.1
+#define _MpAlarmX_VERSION 5.10.1
 #endif
 
 #include <bur/plctypes.h>
@@ -104,7 +104,8 @@ typedef enum MpAlarmXErrorEnum
 	mpALARMX_ERR_WRITE_EXPORT_FILE = -1064116213,
 	mpALARMX_ERR_NAME_NOT_FOUND = -1064116212,
 	mpALARMX_ERR_QUERY_NOT_FOUND = -1064116211,
-	mpALARMX_INF_QUERY_NO_DATA = 1083367438
+	mpALARMX_INF_QUERY_NO_DATA = 1083367438,
+	mpALARMX_WRN_QUERY_INCONSISTENT = -2137858033
 } MpAlarmXErrorEnum;
 
 typedef struct MpAlarmXStatusIDType

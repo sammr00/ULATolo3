@@ -3,4 +3,5 @@ VAR
 	gAxisSideLoad : ACP10AXIS_typ;
 	gMain : Main_Type;
 	i0 : USINT;
+	gAxis03 : ACP10AXIS_typ;
 END_VAR

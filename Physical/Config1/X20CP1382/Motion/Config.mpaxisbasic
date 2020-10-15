@@ -1,13 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Configuration>
   <Element ID="gAxisBasicAxial" Type="mpaxisbasic">
+    <Group ID="MpAxisComponent">
+      <Property ID="VersionAcp10" Value="5.08.2" />
+    </Group>
     <Selector ID="AxisConfiguration" Value="AxisWithConfiguration">
+      <Property ID="AxisName" Value="gAxisBasicAxial" />
       <Group ID="Axis">
         <Property ID="BaseType" Value="4" />
         <Property ID="MeasurementUnit" Value="1" />
-        <Group ID="PeriodSettings">
-          <Property ID="Period" Value="360" />
-        </Group>
         <Group ID="MovementLimits">
           <Property ID="VelocityPositive" Value="10000.0" />
           <Property ID="VelocityNegative" Value="10000.0" />
@@ -18,21 +19,177 @@
         </Group>
       </Group>
       <Group ID="Drive">
+        <Group ID="Gearbox">
+          <Property ID="Input" Value="40" />
+        </Group>
         <Group ID="Transformation">
           <Property ID="ReferenceDistance" Value="12.7" />
         </Group>
         <Group ID="Controller">
+          <Group ID="Position">
+            <Property ID="ProportionalGain" Value="430.0" />
+            <Property ID="PredictionTime" Value="0.00039999998989515" />
+            <Property ID="TotalDelayTime" Value="0.00039999998989515" />
+          </Group>
+          <Group ID="Speed">
+            <Property ID="ProportionalGain" Value="2.89999985694885" />
+          </Group>
+          <Group ID="VoltageFrequency">
+            <Property ID="BoostVoltage" Value="0.0" />
+            <Property ID="RatedVoltage" Value="0.0" />
+            <Property ID="RatedFrequency" Value="50.0" />
+            <Property ID="SlipCompensation" Value="0.0" />
+          </Group>
           <Group ID="LoopFilters">
-            <Selector ID="[0]" />
-            <Selector ID="[1]" />
-            <Selector ID="[2]" />
+            <Selector ID="[0]" Value="1" />
+            <Selector ID="[1]" Value="1" />
+            <Selector ID="[2]" Value="1" />
           </Group>
         </Group>
       </Group>
     </Selector>
+    <Group ID="AcoposInitModule">
+      <Group ID="PeriodAndFactor">
+        <Property ID="Factor" Value="1.0" />
+        <Property ID="Period" Value="0.0" />
+      </Group>
+      <Group ID="DigitalInputsLevel">
+        <Property ID="PosHwEnd" Value="1" />
+        <Property ID="NegHwEnd" Value="1" />
+        <Property ID="Trigger2" Value="1" />
+      </Group>
+      <Group ID="MovementLimits">
+        <Property ID="VelPositive" Value="10000.0" />
+        <Property ID="VelNegative" Value="10000.0" />
+        <Property ID="AccPositive1" Value="50000.0" />
+        <Property ID="AccPositive2" Value="50000.0" />
+        <Property ID="AccNegative1" Value="50000.0" />
+        <Property ID="AccNegative2" Value="50000.0" />
+        <Property ID="JerkTime" Value="0.0" />
+        <Property ID="PositionErrorStopLimit" Value="1000.0" />
+        <Property ID="VelocityErrorStopLimit" Value="0.0" />
+      </Group>
+      <Group ID="Controller">
+        <Group ID="Position">
+          <Property ID="Kv" Value="50.0" />
+          <Property ID="Tn" Value="0.0" />
+          <Property ID="Tpredict" Value="0.00039999998989515" />
+          <Property ID="Ttotal" Value="0.00039999998989515" />
+        </Group>
+        <Group ID="Speed">
+          <Property ID="Kv" Value="2.0" />
+          <Property ID="Tn" Value="0.0" />
+          <Property ID="Tfilter" Value="0.0" />
+        </Group>
+        <Group ID="FeedForward">
+          <Property ID="TorqueLoad" Value="0.0" />
+          <Property ID="TorquePos" Value="0.0" />
+          <Property ID="TorqueNeg" Value="0.0" />
+          <Property ID="SpeedTorqueFactor" Value="0.0" />
+          <Property ID="Inertia" Value="0.0" />
+          <Property ID="TFilterA" Value="0.0" />
+        </Group>
+        <Group ID="VoltageFrequency">
+          <Property ID="Type" Value="129" />
+          <Property ID="BoostVoltage" Value="0.0" />
+          <Property ID="RatedVoltage" Value="0.0" />
+          <Property ID="RatedFrequency" Value="50.0" />
+          <Property ID="SlipCompensation" Value="0.0" />
+        </Group>
+      </Group>
+    </Group>
     <Selector ID="Alarms" Value="MpAlarmX" />
   </Element>
   <Element ID="gAxisBasicSideLoad" Type="mpaxisbasic">
+    <Group ID="MpAxisComponent">
+      <Property ID="VersionAcp10" Value="5.08.2" />
+    </Group>
+    <Selector ID="AxisConfiguration" Value="AxisWithConfiguration">
+      <Group ID="Axis">
+        <Property ID="BaseType" Value="4" />
+        <Property ID="MeasurementUnit" Value="1" />
+      </Group>
+      <Group ID="Drive">
+        <Group ID="Gearbox">
+          <Property ID="Input" Value="2" />
+          <Property ID="Direction" Value="255" />
+        </Group>
+        <Group ID="Transformation">
+          <Property ID="ReferenceDistance" Value="6.35" />
+        </Group>
+        <Group ID="Controller">
+          <Group ID="Position">
+            <Property ID="ProportionalGain" Value="433.0" />
+            <Property ID="PredictionTime" Value="0.00039999998989515" />
+            <Property ID="TotalDelayTime" Value="0.00039999998989515" />
+          </Group>
+          <Group ID="Speed">
+            <Property ID="ProportionalGain" Value="12.0999994277954" />
+          </Group>
+          <Group ID="VoltageFrequency">
+            <Property ID="BoostVoltage" Value="0.0" />
+            <Property ID="RatedVoltage" Value="0.0" />
+            <Property ID="RatedFrequency" Value="50.0" />
+            <Property ID="SlipCompensation" Value="0.0" />
+          </Group>
+          <Group ID="LoopFilters">
+            <Selector ID="[0]" Value="1" />
+            <Selector ID="[1]" Value="1" />
+            <Selector ID="[2]" Value="1" />
+          </Group>
+        </Group>
+      </Group>
+    </Selector>
+    <Group ID="AcoposInitModule">
+      <Group ID="PeriodAndFactor">
+        <Property ID="Factor" Value="1.0" />
+        <Property ID="Period" Value="0.0" />
+      </Group>
+      <Group ID="DigitalInputsLevel">
+        <Property ID="PosHwEnd" Value="1" />
+        <Property ID="NegHwEnd" Value="1" />
+        <Property ID="Trigger2" Value="1" />
+      </Group>
+      <Group ID="MovementLimits">
+        <Property ID="VelPositive" Value="10000.0" />
+        <Property ID="VelNegative" Value="10000.0" />
+        <Property ID="AccPositive1" Value="50000.0" />
+        <Property ID="AccPositive2" Value="50000.0" />
+        <Property ID="AccNegative1" Value="50000.0" />
+        <Property ID="AccNegative2" Value="50000.0" />
+        <Property ID="JerkTime" Value="0.0" />
+        <Property ID="PositionErrorStopLimit" Value="1000.0" />
+        <Property ID="VelocityErrorStopLimit" Value="0.0" />
+      </Group>
+      <Group ID="Controller">
+        <Group ID="Position">
+          <Property ID="Kv" Value="50.0" />
+          <Property ID="Tn" Value="0.0" />
+          <Property ID="Tpredict" Value="0.00039999998989515" />
+          <Property ID="Ttotal" Value="0.00039999998989515" />
+        </Group>
+        <Group ID="Speed">
+          <Property ID="Kv" Value="2.0" />
+          <Property ID="Tn" Value="0.0" />
+          <Property ID="Tfilter" Value="0.0" />
+        </Group>
+        <Group ID="FeedForward">
+          <Property ID="TorqueLoad" Value="0.0" />
+          <Property ID="TorquePos" Value="0.0" />
+          <Property ID="TorqueNeg" Value="0.0" />
+          <Property ID="SpeedTorqueFactor" Value="0.0" />
+          <Property ID="Inertia" Value="0.0" />
+          <Property ID="TFilterA" Value="0.0" />
+        </Group>
+        <Group ID="VoltageFrequency">
+          <Property ID="Type" Value="129" />
+          <Property ID="BoostVoltage" Value="0.0" />
+          <Property ID="RatedVoltage" Value="0.0" />
+          <Property ID="RatedFrequency" Value="50.0" />
+          <Property ID="SlipCompensation" Value="0.0" />
+        </Group>
+      </Group>
+    </Group>
     <Selector ID="Alarms" Value="MpAlarmX" />
   </Element>
 </Configuration>

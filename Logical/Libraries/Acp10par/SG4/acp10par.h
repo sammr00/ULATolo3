@@ -1,4 +1,4 @@
-/* acp10par.h V5.08.2 */ 
+/* acp10par.h V5.10.1 */ 
 /* COPYRIGHT (C) B&R Industrial Automation GmbH */ 
 
 #ifndef ACP10PAR_H_ 
@@ -34,6 +34,7 @@
 #define ACP10PAR_ENCOD2_SERIAL_STATUS        36 /* (UINT) Encoder2: Serial status */
 #define ACP10PAR_ENCOD3_SERIAL_DATA          37 /* (DATA) Encoder3: Serial data block */
 #define ACP10PAR_ENCOD3_SERIAL_STATUS        38 /* (UINT) Encoder3: Serial status */
+#define ACP10PAR_SAFEMC_ENCOD_REF_LEN        39 /* (UDINT) SafeMC: Encoder scaling: reference length [nm] */
 #define ACP10PAR_MOTOR_ORDERTEXT             40 /* (STR32) Motor: Order text */
 #define ACP10PAR_MOTOR_SERIALNUMBER          41 /* (STR16) Motor: Serial number */
 #define ACP10PAR_MOTOR_BRAKE_CURR_RATED      42 /* (REAL) Motor holding brake: Rated current [A] */
@@ -177,7 +178,7 @@
 #define ACP10PAR_CMD_BASIS_MOVE_HALT        191 /* (NIL) Basis movements: Halt */
 #define ACP10PAR_AUT_PAR_RESET              194 /* (USINT) Cam automat: Reset parameter */
 #define ACP10PAR_AUT_PAR_RESET_VAX1         195 /* (USINT) VAX Cam automat: Reset parameter */
-#define ACP10PAR_SAFEMC_SPEED_ACT_I4        196 /* (DINT) SafeMC: Actual speed [Units/s] */
+#define ACP10PAR_SAFEMC_SPEED_ACT_I4        196 /* (DINT) SafeMC: Actual speed (SafeUserData1, if activated) */
 #define ACP10PAR_STOP_ERR_DECEL_RAMP        197 /* (USINT) Movement stop: Deceleration ramp after drive error */
 #define ACP10PAR_CYCLIC_TODRV_T_CTRL        198 /* (DINT) Cyclic communication: Time for life sign monitoring of data to drive [us] */
 #define ACP10PAR_ENCOD_POLEPAIRS            203 /* (USINT) Encoder1: Resolver polepairs per encoder revolution */
@@ -263,6 +264,8 @@
 #define ACP10PAR_BRAKE_TEST_POS_DELTA       323 /* (REAL) Motor holding brake: Maximal position error [Rev.] */
 #define ACP10PAR_ICTRL_ADD_SET_PARID        325 /* (UINT) CTRL Current controller: Additive set value parameter ID */
 #define ACP10PAR_CONTROLLER_MODE            328 /* (USINT) CTRL Controller: Mode */
+#define ACP10PAR_VCTRL_ENCOD_REV            330 /* (DINT) Motor encoder: Gear: Encoder revolutions */
+#define ACP10PAR_VCTRL_MOTOR_REV            331 /* (DINT) Motor encoder: Gear: Motor revolutions */
 #define ACP10PAR_CMD_PHASING                334 /* (UINT) Motor: Phasing: Command */
 #define ACP10PAR_ENCOD_ERROR_STATE          336 /* (USINT) Encoder1: Error state */
 #define ACP10PAR_ENCOD2_ERROR_STATE         337 /* (USINT) Encoder2: Error state */
@@ -1178,6 +1181,7 @@
 #define ACP10PAR_MOTOR_HWINFO_DATA         1547 /* (DATA) Motor: Data for hardware information */
 #define ACP10PAR_BASIS_TRG_STOP_S_DIFF     1549 /* (DINT) Basis movements: Target position difference for mode 'stop after trigger' [Units] */
 #define ACP10PAR_ENCOD_SUPPLY_VOLTAGE      1556 /* (REAL) Encoder1: Supply voltage [V] */
+#define ACP10PAR_UCTRL_CMD                 1557 /* (UINT) CTRL DC bus: Controller: Command */
 #define ACP10PAR_INVR_TPOW                 1558 /* (REAL) Inverter: Total power [W] */
 #define ACP10PAR_INVR_TPOW_CONT_LIM        1559 /* (REAL) Inverter: Continuous total power: Limit power [W] */
 #define ACP10PAR_INVR_TPOW_PEAK_LIM        1560 /* (REAL) Inverter: Peak total power: Limit power [W] */
@@ -1621,6 +1625,7 @@
 #define ACP10PAR_FILTER_VALUE_I4          14912 /* (DINT) FB FILTER: Result value I4 */
 #define ACP10PAR_FILTER_VALUE_FRAC        14920 /* (REAL) FB FILTER: Result value I4 fractional part */
 #define ACP10PAR_FILTER_VALUE_R4          14928 /* (REAL) FB FILTER: Result value R4 */
+#define ACP10PAR_SHTL_INIT_POSITION_INFO  63488 /* (DINT) Parameter identification: Additional information of initial shuttle position */
 #define ACP10PAR_SHTL_INIT_POSITION_QVAL  63490 /* (REAL) Parameter identification: Quality of the initial shuttle position */
 #define ACP10PAR_UDC_MIDDLE_FILTER        63491 /* (REAL) DC-Bus: Filtered middle voltage [V] */
 #define ACP10PAR_UDC_MIDDLE_ACT           63492 /* (REAL) DC-Bus: Middle voltage [V] */
@@ -1786,6 +1791,7 @@
 #define ACP10PAR_MOT_TEMPMODEL_TEMP_WRN   63692 /* (REAL) Motor: Temperature model: warning limit [°C] */
 #define ACP10PAR_MOT_TEMPMODEL_COIL_IDX   63693 /* (USINT) Motor: Temperature model: Coil index (0-based) */
 #define ACP10PAR_MOT_TEMPMODEL_COIL_TEMP  63694 /* (REAL) Motor: Temperature model: Coil temperature [°C] */
+#define ACP10PAR_PHASE_IS_ACT_SUM         63806 /* (REAL) CTRL Current controller: Sum of actual phase currents [A] */
 #define ACP10PAR_LLM_PAR_CONF_IDX         63879 /* (USINT) CTRL Controller: Configuration: Index of parameter record */
 #define ACP10PAR_LLM_PCTRL_S_ACT          63880 /* (LREAL) CTRL Position controller: Actual position of shuttle on segment [m] */
 #define ACP10PAR_LLM_CYC_SET_VALUE        63882 /* (LREAL) CTRL Controller: Cyclic set position of the shuttle  [m] */

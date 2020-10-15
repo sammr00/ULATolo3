@@ -79,6 +79,7 @@
  1032: Internal bus error
        Info(UDINT): Error code
  1034: Value of parameter in connection with motor encoder gear not allowed
+ 1035: Parameter cannot be written while a encoder is active.
  2001: Upload of trace data not allowed: Recording active
  2003: Trace start not allowed: Recording active
  2006: Initialization of trace parameters not allowed: Recording active
@@ -163,7 +164,7 @@
  6017: Software: Watchdog active
  6018: Hardware: Internal power supply failure
  6019: ACOPOS: Overcurrent
- 6020: 24 VDC supply: Undervoltage
+ 6020: Control supply: Undervoltage
  6021: Low level at controller enable input
  6023: Voltage sag at controller enable input
  6026: Holding brake: Stator current limit exceeded during release
@@ -225,7 +226,7 @@
  6072: Holding brake: High voltage
  6073: Additional control function in error state
        Info(UINT): Error status
- 6074: 24 VDC supply: Overvoltage
+ 6074: Control supply: Overvoltage
        Info(REAL): Limit value
  6075: Initialization of load simulation failed
  6076: Inverter: Wiring: Phase sequence not correct
@@ -387,7 +388,8 @@
  7228: DC bus: Nominal voltage detection: High inrush current
        Info(REAL): Voltage boost factor
  7229: Chopper: Overcurrent
- 7230: DC bus: measurement site 2 out of bounds
+ 7230: DC bus: center voltage limit exceeded
+       Info(UDINT): Detail
  7231: Motor: Overvoltage
        Info(REAL): Limit voltage
  7232: Mains: Detected frequency outside the range [20,200]
@@ -544,6 +546,8 @@
 10103: Autotuning: Maximum lag error exceeded
        Info(REAL): Current lag error
 10500: Induction stop was terminated
+11000: Inter segment communication: Wiring fault
+       Info(UDINT): Connector
 29200: The axis object is invalid
        Info(UINT): PLCopen_FB
 29203: Drive is not ready

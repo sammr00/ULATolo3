@@ -1,8 +1,8 @@
-/* acp10man.h V5.08.2 */ 
+/* acp10man.h V5.10.1 */ 
 /* COPYRIGHT (C) B&R Industrial Automation GmbH */ 
 
 #ifndef ACP10MAN_H_VERSION 
-#define ACP10MAN_H_VERSION 0x5082 
+#define ACP10MAN_H_VERSION 0x5101 
 
 #include <ncglobal.h>
 #include <acp10par.h>
@@ -1135,11 +1135,11 @@ typedef struct ACP10SAFEINDAT3_typ {          /* SafeMC: SafeIN data3 */
    USINT              ReqHomingOK;            /* Request Homing OK bit */
    USINT              SafetyActiveSLP;        /* SLP status bit */
    USINT              SafetyActiveSMP;        /* SMP status bit */
-   USINT              reserved_stat_b29;      /* reserved_stat_b29 */
+   USINT              SafeUserData1Active;    /* SafeUserData1 is active */
    USINT              RSPValid;               /* RSP Valid bit */
    USINT              StatusSetPosAlive;      /* Setposition is tested */
    DINT               SafePosition;           /* Safe position */
-   DINT               SafeSpeed;              /* Safe speed */
+   DINT               SafeSpeed;              /* Safe speed (SafeUserData1, if activated) */
    UDINT              reserve1;               /* Reserved */
    UDINT              reserve2;               /* Reserved */
 } ACP10SAFEINDAT3_typ;
@@ -1229,7 +1229,7 @@ typedef struct ACP10SAFEOUTDAT3_typ {         /* SafeMC: SafeOUT data3 */
    USINT              RequestSBT;             /* SBT control bit */
    USINT              reserved_ctrl_b20;      /* reserved_ctrl_b20 */
    USINT              RequestSLT;             /* SLT control bit */
-   USINT              reserved_ctrl_b22;      /* reserved_ctrl_b22 */
+   USINT              RequestSafeUserData1;   /* SafeUserData1 control bit */
    USINT              reserved_ctrl_b23;      /* reserved_ctrl_b23 */
    USINT              reserved_ctrl_b24;      /* reserved_ctrl_b24 */
    USINT              RequestHoming;          /* Homing control bit */

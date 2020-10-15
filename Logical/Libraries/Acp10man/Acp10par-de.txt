@@ -32,7 +32,7 @@
    36: Geber2: Serieller Status
    37: Geber3: Serieller Datenblock
    38: Geber3: Serieller Status
-   39: INTERNAL39
+   39: SafeMC: Geber-Maßstab: Bezugslänge
    40: Motor: Bestellbezeichnung
    41: Motor: Seriennummer
    42: Motor-Haltebremse: Nennstrom
@@ -183,7 +183,7 @@
   191: Basis-Bewegungen: Anhalten
   194: Kurvenautomat: Parameter rücksetzen
   195: VAX Kurvenautomat: Parameter rücksetzen
-  196: SafeMC: Istdrehzahl 
+  196: SafeMC: Istdrehzahl (SafeUserData1, wenn aktiviert)
   197: Bewegungsabbruch: Bremsrampe nach Antriebsfehler
   198: Zyklische Kommunikation: Zeit für Lebensüberwachung der Daten zum Antrieb
   200: INTERNAL200
@@ -305,8 +305,8 @@
   326: INTERNAL326
   327: INTERNAL327
   328: CTRL Regler: Modus
-  330: INTERNAL330
-  331: INTERNAL331
+  330: Motorgeber: Getriebe: Geberumdrehungen
+  331: Motorgeber: Getriebe: Motorumdrehungen
   332: INTERNAL332
   333: INTERNAL333
   334: Motor: Einphasen: Kommando
@@ -1410,7 +1410,7 @@
  1554: INTERNAL1554
  1555: INTERNAL1555
  1556: Geber1: Versorgungspannung
- 1557: INTERNAL1557
+ 1557: CTRL Zwischenkreis: Regler: Kommando
  1558: Wechselrichter: Summenleistung
  1559: Wechselrichter: Dauersummenleistung: Grenzleistung
  1560: Wechselrichter: Spitzensummenleistung: Grenzleistung
@@ -1923,7 +1923,7 @@
 14912: FB FILTER: Ergebniswert I4
 14920: FB FILTER: Ergebniswert I4 Nachkommateil
 14928: FB FILTER: Ergebniswert R4
-63488: INTERNAL63488
+63488: Parameter Identifikation: Zusatzinformation zu initialen Shuttleposition
 63489: INTERNAL63489
 63490: Parameter Identifikation: Qualität der initialen Shuttleposition
 63491: Zwischenkreis: Gefilterte Mittenspannung
@@ -2223,6 +2223,7 @@
 63803: INTERNAL63803
 63804: INTERNAL63804
 63805: INTERNAL63805
+63806: CTRL Strom: Summe der Istphasenströme
 63879: CTRL Regler: Konfiguration: Index eines Parametersatzes
 63880: CTRL Position: Istposition des Shuttles auf Segment
 63881: INTERNAL63881

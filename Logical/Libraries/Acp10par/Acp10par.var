@@ -1,9 +1,9 @@
 (********************************************************************
  * COPYRIGHT (C) B&R Industrial Automation GmbH
  ********************************************************************
- * File: ACP10PAR.VAR (2019-11-11 09:53:05)
+ * File: ACP10PAR.VAR (2020-04-28 18:48:54)
  ********************************************************************
- * Constants of library ACP10PAR (V5.08.2)
+ * Constants of library ACP10PAR (V5.10.1)
  ********************************************************************)
 VAR CONSTANT
     ACP10PAR_SAFEMC_STATUS            :UINT  := 4;     (* (UDINT) SafeMC: Status *)
@@ -36,6 +36,7 @@ VAR CONSTANT
     ACP10PAR_ENCOD2_SERIAL_STATUS     :UINT  := 36;    (* (UINT) Encoder2: Serial status *)
     ACP10PAR_ENCOD3_SERIAL_DATA       :UINT  := 37;    (* (DATA) Encoder3: Serial data block *)
     ACP10PAR_ENCOD3_SERIAL_STATUS     :UINT  := 38;    (* (UINT) Encoder3: Serial status *)
+    ACP10PAR_SAFEMC_ENCOD_REF_LEN     :UINT  := 39;    (* (UDINT) SafeMC: Encoder scaling: reference length [nm] *)
     ACP10PAR_MOTOR_ORDERTEXT          :UINT  := 40;    (* (STR32) Motor: Order text *)
     ACP10PAR_MOTOR_SERIALNUMBER       :UINT  := 41;    (* (STR16) Motor: Serial number *)
     ACP10PAR_MOTOR_BRAKE_CURR_RATED   :UINT  := 42;    (* (REAL) Motor holding brake: Rated current [A] *)
@@ -179,7 +180,7 @@ VAR CONSTANT
     ACP10PAR_CMD_BASIS_MOVE_HALT      :UINT  := 191;   (* (NIL) Basis movements: Halt *)
     ACP10PAR_AUT_PAR_RESET            :UINT  := 194;   (* (USINT) Cam automat: Reset parameter *)
     ACP10PAR_AUT_PAR_RESET_VAX1       :UINT  := 195;   (* (USINT) VAX Cam automat: Reset parameter *)
-    ACP10PAR_SAFEMC_SPEED_ACT_I4      :UINT  := 196;   (* (DINT) SafeMC: Actual speed [Units/s] *)
+    ACP10PAR_SAFEMC_SPEED_ACT_I4      :UINT  := 196;   (* (DINT) SafeMC: Actual speed (SafeUserData1, if activated) *)
     ACP10PAR_STOP_ERR_DECEL_RAMP      :UINT  := 197;   (* (USINT) Movement stop: Deceleration ramp after drive error *)
     ACP10PAR_CYCLIC_TODRV_T_CTRL      :UINT  := 198;   (* (DINT) Cyclic communication: Time for life sign monitoring of data to drive [us] *)
     ACP10PAR_ENCOD_POLEPAIRS          :UINT  := 203;   (* (USINT) Encoder1: Resolver polepairs per encoder revolution *)
@@ -265,6 +266,8 @@ VAR CONSTANT
     ACP10PAR_BRAKE_TEST_POS_DELTA     :UINT  := 323;   (* (REAL) Motor holding brake: Maximal position error [Rev.] *)
     ACP10PAR_ICTRL_ADD_SET_PARID      :UINT  := 325;   (* (UINT) CTRL Current controller: Additive set value parameter ID *)
     ACP10PAR_CONTROLLER_MODE          :UINT  := 328;   (* (USINT) CTRL Controller: Mode *)
+    ACP10PAR_VCTRL_ENCOD_REV          :UINT  := 330;   (* (DINT) Motor encoder: Gear: Encoder revolutions *)
+    ACP10PAR_VCTRL_MOTOR_REV          :UINT  := 331;   (* (DINT) Motor encoder: Gear: Motor revolutions *)
     ACP10PAR_CMD_PHASING              :UINT  := 334;   (* (UINT) Motor: Phasing: Command *)
     ACP10PAR_ENCOD_ERROR_STATE        :UINT  := 336;   (* (USINT) Encoder1: Error state *)
     ACP10PAR_ENCOD2_ERROR_STATE       :UINT  := 337;   (* (USINT) Encoder2: Error state *)
@@ -1180,6 +1183,7 @@ VAR CONSTANT
     ACP10PAR_MOTOR_HWINFO_DATA        :UINT  := 1547;  (* (DATA) Motor: Data for hardware information *)
     ACP10PAR_BASIS_TRG_STOP_S_DIFF    :UINT  := 1549;  (* (DINT) Basis movements: Target position difference for mode 'stop after trigger' [Units] *)
     ACP10PAR_ENCOD_SUPPLY_VOLTAGE     :UINT  := 1556;  (* (REAL) Encoder1: Supply voltage [V] *)
+    ACP10PAR_UCTRL_CMD                :UINT  := 1557;  (* (UINT) CTRL DC bus: Controller: Command *)
     ACP10PAR_INVR_TPOW                :UINT  := 1558;  (* (REAL) Inverter: Total power [W] *)
     ACP10PAR_INVR_TPOW_CONT_LIM       :UINT  := 1559;  (* (REAL) Inverter: Continuous total power: Limit power [W] *)
     ACP10PAR_INVR_TPOW_PEAK_LIM       :UINT  := 1560;  (* (REAL) Inverter: Peak total power: Limit power [W] *)
@@ -1623,6 +1627,7 @@ VAR CONSTANT
     ACP10PAR_FILTER_VALUE_I4          :UINT  := 14912; (* (DINT) FB FILTER: Result value I4 *)
     ACP10PAR_FILTER_VALUE_FRAC        :UINT  := 14920; (* (REAL) FB FILTER: Result value I4 fractional part *)
     ACP10PAR_FILTER_VALUE_R4          :UINT  := 14928; (* (REAL) FB FILTER: Result value R4 *)
+    ACP10PAR_SHTL_INIT_POSITION_INFO  :UINT  := 63488; (* (DINT) Parameter identification: Additional information of initial shuttle position *)
     ACP10PAR_SHTL_INIT_POSITION_QVAL  :UINT  := 63490; (* (REAL) Parameter identification: Quality of the initial shuttle position *)
     ACP10PAR_UDC_MIDDLE_FILTER        :UINT  := 63491; (* (REAL) DC-Bus: Filtered middle voltage [V] *)
     ACP10PAR_UDC_MIDDLE_ACT           :UINT  := 63492; (* (REAL) DC-Bus: Middle voltage [V] *)
@@ -1788,6 +1793,7 @@ VAR CONSTANT
     ACP10PAR_MOT_TEMPMODEL_TEMP_WRN   :UINT  := 63692; (* (REAL) Motor: Temperature model: warning limit [°C] *)
     ACP10PAR_MOT_TEMPMODEL_COIL_IDX   :UINT  := 63693; (* (USINT) Motor: Temperature model: Coil index (0-based) *)
     ACP10PAR_MOT_TEMPMODEL_COIL_TEMP  :UINT  := 63694; (* (REAL) Motor: Temperature model: Coil temperature [°C] *)
+    ACP10PAR_PHASE_IS_ACT_SUM         :UINT  := 63806; (* (REAL) CTRL Current controller: Sum of actual phase currents [A] *)
     ACP10PAR_LLM_PAR_CONF_IDX         :UINT  := 63879; (* (USINT) CTRL Controller: Configuration: Index of parameter record *)
     ACP10PAR_LLM_PCTRL_S_ACT          :UINT  := 63880; (* (LREAL) CTRL Position controller: Actual position of shuttle on segment [m] *)
     ACP10PAR_LLM_CYC_SET_VALUE        :UINT  := 63882; (* (LREAL) CTRL Controller: Cyclic set position of the shuttle  [m] *)

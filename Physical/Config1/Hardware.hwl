@@ -1,13 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <BR.AS.HardwareTopology Version="0.0.0.1">
   <TimeStamps>
-    <TimeStamp LogicalPath="Config1.Hardware.hw" LastWriteTime="07/20/2020 16:35:50" />
+    <TimeStamp LogicalPath="Config1.Hardware.hw" LastWriteTime="10/15/2020 08:42:42" />
   </TimeStamps>
   <Modules>
-    <Module Name="8EI8X8HWT10.xxxx-1" Type="8EI8X8HWT10.xxxx-1" X="264" Y="252" />
-    <Module Name="8EAC0150.003-1" Type="8EAC0150.003-1" X="266.8" Y="290.5" />
-    <Module Name="8LSA46.DB060S200-3" Type="8LSA46.DB060S200-3" X="264" Y="563" />
-    <Module Name="8LSA37.DB060S000-3" Type="8LSA37.DB060S000-3" X="380" Y="563" />
     <Module Name="X20BM11" Type="X20BM11" X="264" Y="100" />
     <Module Name="X20AI1744" Type="X20AI1744" X="264" Y="100" />
     <Module Name="X20TB12" Type="X20TB12" X="264" Y="127" />
@@ -18,56 +14,55 @@
     <Module Name="X20TB1F1" Type="X20TB1F" X="238" Y="126" />
     <Module Name="X1" Type="X1" X="225" Y="103" />
     <Module Name="X20TB1F" Type="X20TB1F" X="225" Y="126" />
+    <Module Name="8LSA37.DB060S000-3a" Type="8LSA37.DB060S000-3" X="335" Y="548" />
+    <Module Name="8LSA46.DB060S000-3" Type="8LSA46.DB060S000-3" X="450" Y="548" />
+    <Module Name="8EI8X8HWT10.xxxx-1" Type="8EI8X8HWT10.xxxx-1" X="277" Y="252" />
   </Modules>
   <Links>
-    <Link From="8EAC0150.003-1" To="8LSA46.DB060S200-3" FromPort="EC1" ToPort="EC" IsRoutedByUser="False">
-      <Point X="285.5" Y="569.9" />
-      <Point X="285.5" Y="569.9" />
-      <Point X="285.5" Y="562.9" />
-      <Point X="285.5" Y="555" />
-      <Point X="255" Y="555" />
-      <Point X="255" Y="333" />
-      <Point X="263.599976" Y="333" />
-      <Point X="273.599976" Y="333" />
-      <Point X="273.599976" Y="333" />
-    </Link>
-    <Link From="8EI8X8HWT10.xxxx-1" To="X20CP1382" FromPort="PLK1" ToPort="IF3" IsRoutedByUser="False">
-      <Point X="271.7" Y="262.5" />
-      <Point X="271.7" Y="262.5" />
-      <Point X="263.7" Y="262.5" />
-      <Point X="153" Y="262.5" />
+    <Link From="8EI8X8HWT10.xxxx-1" To="X20CP1382" FromPort="PLK2" ToPort="IF3" IsRoutedByUser="False">
+      <Point X="153" Y="188" />
+      <Point X="153" Y="188" />
       <Point X="153" Y="203" />
-      <Point X="153" Y="188" />
-      <Point X="153" Y="188" />
+      <Point X="153" Y="270.375" />
+      <Point X="276.1" Y="270.375" />
+      <Point X="293.1" Y="270.375" />
+      <Point X="293.1" Y="262.5" />
     </Link>
-    <Link From="8EI8X8HWT10.xxxx-1" To="8LSA37.DB060S000-3" FromPort="EC2" ToPort="EC" IsRoutedByUser="False">
-      <Point X="401.5" Y="569.9001" />
-      <Point X="401.5" Y="569.9001" />
-      <Point X="401.5" Y="562.9001" />
-      <Point X="401.5" Y="340" />
-      <Point X="311" Y="340" />
-      <Point X="289" Y="340" />
-      <Point X="289" Y="340" />
+    <Link From="8EI8X8HWT10.xxxx-1" To="8LSA37.DB060S000-3a" FromPort="EC1" ToPort="EC" IsRoutedByUser="False">
+      <Point X="356.5" Y="554.899963" />
+      <Point X="356.5" Y="554.899963" />
+      <Point X="356.5" Y="547.899963" />
+      <Point X="356.5" Y="389" />
+      <Point X="324" Y="389" />
+      <Point X="302" Y="389" />
+      <Point X="302" Y="389" />
     </Link>
-    <Link From="8EI8X8HWT10.xxxx-1" To="8LSA46.DB060S200-3" FromPort="MT1" ToPort="MT" IsRoutedByUser="False">
-      <Point X="290.6" Y="398.300018" />
-      <Point X="290.6" Y="398.300018" />
-      <Point X="310.6" Y="398.300018" />
-      <Point X="325" Y="398.300018" />
-      <Point X="325" Y="525" />
-      <Point X="313.5" Y="525" />
-      <Point X="313.5" Y="562.9" />
-      <Point X="313.5" Y="569.9" />
-      <Point X="313.5" Y="569.9" />
+    <Link From="8EI8X8HWT10.xxxx-1" To="8LSA46.DB060S000-3" FromPort="EC2" ToPort="EC" IsRoutedByUser="False">
+      <Point X="471.5" Y="554.899963" />
+      <Point X="471.5" Y="554.899963" />
+      <Point X="471.5" Y="547.899963" />
+      <Point X="471.5" Y="340" />
+      <Point X="324" Y="340" />
+      <Point X="302" Y="340" />
+      <Point X="302" Y="340" />
     </Link>
-    <Link From="8EI8X8HWT10.xxxx-1" To="8LSA37.DB060S000-3" FromPort="MT2" ToPort="MT" IsRoutedByUser="False">
-      <Point X="429.5" Y="569.9001" />
-      <Point X="429.5" Y="569.9001" />
-      <Point X="429.5" Y="562.9001" />
-      <Point X="429.5" Y="349.3" />
-      <Point X="310.6" Y="349.3" />
-      <Point X="290.6" Y="349.3" />
-      <Point X="290.6" Y="349.3" />
+    <Link From="8EI8X8HWT10.xxxx-1" To="8LSA37.DB060S000-3a" FromPort="MT1" ToPort="MT" IsRoutedByUser="False">
+      <Point X="384.5" Y="554.899963" />
+      <Point X="384.5" Y="554.899963" />
+      <Point X="384.5" Y="547.899963" />
+      <Point X="384.5" Y="398.3" />
+      <Point X="323.6" Y="398.3" />
+      <Point X="303.6" Y="398.3" />
+      <Point X="303.6" Y="398.3" />
+    </Link>
+    <Link From="8EI8X8HWT10.xxxx-1" To="8LSA46.DB060S000-3" FromPort="MT2" ToPort="MT" IsRoutedByUser="False">
+      <Point X="499.5" Y="554.899963" />
+      <Point X="499.5" Y="554.899963" />
+      <Point X="499.5" Y="547.899963" />
+      <Point X="499.5" Y="349.3" />
+      <Point X="323.6" Y="349.3" />
+      <Point X="303.6" Y="349.3" />
+      <Point X="303.6" Y="349.3" />
     </Link>
   </Links>
   <InfoElements />

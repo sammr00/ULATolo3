@@ -32,7 +32,7 @@
    36: Encoder2: Serial status
    37: Encoder3: Serial data block
    38: Encoder3: Serial status
-   39: INTERNAL39
+   39: SafeMC: Encoder scaling: reference length
    40: Motor: Order text
    41: Motor: Serial number
    42: Motor holding brake: Rated current
@@ -183,7 +183,7 @@
   191: Basis movements: Halt
   194: Cam automat: Reset parameter
   195: VAX Cam automat: Reset parameter
-  196: SafeMC: Actual speed
+  196: SafeMC: Actual speed (SafeUserData1, if activated)
   197: Movement stop: Deceleration ramp after drive error
   198: Cyclic communication: Time for life sign monitoring of data to drive
   200: INTERNAL200
@@ -305,8 +305,8 @@
   326: INTERNAL326
   327: INTERNAL327
   328: CTRL Controller: Mode
-  330: INTERNAL330
-  331: INTERNAL331
+  330: Motor encoder: Gear: Encoder revolutions
+  331: Motor encoder: Gear: Motor revolutions
   332: INTERNAL332
   333: INTERNAL333
   334: Motor: Phasing: Command
@@ -1410,7 +1410,7 @@
  1554: INTERNAL1554
  1555: INTERNAL1555
  1556: Encoder1: Supply voltage
- 1557: INTERNAL1557
+ 1557: CTRL DC bus: Controller: Command
  1558: Inverter: Total power
  1559: Inverter: Continuous total power: Limit power
  1560: Inverter: Peak total power: Limit power
@@ -1923,7 +1923,7 @@
 14912: FB FILTER: Result value I4
 14920: FB FILTER: Result value I4 fractional part
 14928: FB FILTER: Result value R4
-63488: INTERNAL63488
+63488: Parameter identification: Additional information of initial shuttle position
 63489: INTERNAL63489
 63490: Parameter identification: Quality of the initial shuttle position
 63491: DC-Bus: Filtered middle voltage
@@ -2223,6 +2223,7 @@
 63803: INTERNAL63803
 63804: INTERNAL63804
 63805: INTERNAL63805
+63806: CTRL Current controller: Sum of actual phase currents
 63879: CTRL Controller: Configuration: Index of parameter record
 63880: CTRL Position controller: Actual position of shuttle on segment
 63881: INTERNAL63881

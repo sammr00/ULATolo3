@@ -77,6 +77,7 @@ TYPE
 		EnableCyclicTorque : BOOL;
 		TorqueScaled : REAL;
 		MpAxisCyclicSet_FB : MpAxisCyclicSet;
+		MC_MoveAdditive_SideLoad : MC_MoveAdditive;
 	END_STRUCT;
 	AxialMove_Type : 	STRUCT 
 		Amax : REAL;
@@ -85,10 +86,11 @@ TYPE
 		TotalTime : REAL;
 		CyclicCommandedPosition : REAL;
 		CycleAmplitude : REAL;
+		FirstMovementFlag : BOOL;
 		ChangeDirectionFlag : BOOL;
 		CycleCount : UDINT;
 		PositionOffset : REAL;
-		MC_MoveAbsoluteFB_Axial : MC_MoveAbsolute;
+		MC_MoveAdditive_Axial : MC_MoveAdditive;
 	END_STRUCT;
 	AxisEnum : 
 		(
