@@ -35,6 +35,7 @@ TYPE
 		JogPos : BOOL;
 		ManualMoveButton : BOOL;
 		StartProgramButton : BOOL;
+		NominalPosition : REAL;
 		AutoCommandedAxialPosition : REAL;
 		PowerOnButtonVisibility : USINT;
 		JogButtonVisibility : USINT;
@@ -43,6 +44,10 @@ TYPE
 		EStopPopup : USINT;
 		EStop : BOOL;
 		PowerOnAll : BOOL;
+		OscillationDistance : REAL;
+		ManualStopButtonVis : UINT;
+		ConfirmPopup : USINT;
+		ManualGoButtonVis : UINT;
 	END_STRUCT;
 	Input_Type : 	STRUCT 
 		Physical : InputPhysical_Type;
@@ -60,6 +65,7 @@ TYPE
 		SideLoad : SideLoad_Type;
 		AxialMove : AxialMove_Type;
 		IsPoweredAll : BOOL;
+		AtNominalFlag : BOOL;
 	END_STRUCT;
 	Machine_Type : 	STRUCT 
 		State : StateEnum;
@@ -70,13 +76,13 @@ TYPE
 		Output : Output_Type;
 		Input : Input_Type;
 		Machine : Machine_Type;
+		Services : Services_Type;
 	END_STRUCT;
 	SideLoad_Type : 	STRUCT 
-		MpAxisCyclicSetParType : MpAxisCyclicSetParType;
 		ScalingFactor : REAL;
 		EnableCyclicTorque : BOOL;
 		TorqueScaled : REAL;
-		MpAxisCyclicSet_FB : MpAxisCyclicSet;
+		MC_TorqueControl_FB : MC_TorqueControl;
 		MC_MoveAdditive_SideLoad : MC_MoveAdditive;
 	END_STRUCT;
 	AxialMove_Type : 	STRUCT 
@@ -107,4 +113,8 @@ TYPE
 		Init := 1,
 		Error := 0
 		);
+	Services_Type : 	STRUCT 
+		MpDataRegPar : MpDataRegPar;
+		MpDataRecorder_FB : MpDataRecorder;
+	END_STRUCT;
 END_TYPE

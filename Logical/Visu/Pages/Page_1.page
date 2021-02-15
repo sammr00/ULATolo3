@@ -44,6 +44,8 @@
           <Text ID="216898" Value="Jog Positive"/>
           <Text ID="216900" Value="Jog Negative"/>
           <Text ID="216902" Value="Go"/>
+          <Text ID="221587" Value="Oscillation Distance\n"/>
+          <Text ID="223144" Value="Stop"/>
         </TextLayer>
         <TextLayer LanguageId="de">
           <Text ID="208297" Value="Text_1"/>
@@ -64,6 +66,8 @@
           <Text ID="216898" Value=""/>
           <Text ID="216900" Value=""/>
           <Text ID="216902" Value=""/>
+          <Text ID="221587" Value="Text_1"/>
+          <Text ID="223144" Value=""/>
         </TextLayer>
         <IndexMap>
           <Index ID="208297" Value="8"/>
@@ -84,6 +88,8 @@
           <Index ID="216898" Value="7"/>
           <Index ID="216900" Value="11"/>
           <Index ID="216902" Value="22"/>
+          <Index ID="221587" Value="26"/>
+          <Index ID="223144" Value="27"/>
         </IndexMap>
       </TextGroup>
       <Controls>
@@ -104,15 +110,15 @@
           <Property Name="InputStart" Value="Any Key"/>
           <Property Name="InputTouchpad" Value="Source[local].TouchPad[MpNumPad]"/>
           <Property Name="InputUpDown" Value="Disabled"/>
-          <Property Name="Left" Value="355"/>
+          <Property Name="Left" Value="353"/>
           <Property Name="MaxDatapoint" Value="None"/>
-          <Property Name="MaxValue" Value="22.2"/>
+          <Property Name="MaxValue" Value="6"/>
           <Property Name="MinDatapoint" Value="None"/>
-          <Property Name="MinValue" Value="18.2"/>
+          <Property Name="MinValue" Value="-6"/>
           <Property Name="SimulationValue" Value="0"/>
           <Property Name="StyleClass" Value="Source[relative:StyleGroup].StyleClass[MpDefault]"/>
           <Property Name="TeachDatapoint" Value="None"/>
-          <Property Name="Top" Value="208"/>
+          <Property Name="Top" Value="207"/>
           <Property Name="ValueDatapoint" Value="Source[global].Variable[DataSource.gMain.Input.Vis.AutoCommandedAxialPosition]"/>
           <Property Name="ValueMode" Value="Standard"/>
           <Property Name="Width" Value="330"/>
@@ -222,7 +228,7 @@
           <Property Name="Width" Value="131"/>
         </Control>
         <Control ClassId="0x00001007" Name="Numeric_4">
-          <Property Name="AddFractionDigits" Value="1"/>
+          <Property Name="AddFractionDigits" Value="3"/>
           <Property Name="AlignmentHorizontal" Value="Center"/>
           <Property Name="Border" Value="Source[local].Border[Mp_Button_Device_Unselect_Left]"/>
           <Property Name="ControlID" Value="0"/>
@@ -322,7 +328,7 @@
           <Property Name="InputStart" Value="Any Key"/>
           <Property Name="InputTouchpad" Value="Source[local].TouchPad[MpNumPad]"/>
           <Property Name="InputUpDown" Value="Disabled"/>
-          <Property Name="Left" Value="355"/>
+          <Property Name="Left" Value="353"/>
           <Property Name="MaxDatapoint" Value="None"/>
           <Property Name="MaxValue" Value="None"/>
           <Property Name="MinDatapoint" Value="None"/>
@@ -349,7 +355,7 @@
           <Property Name="TextGroup" Value="Source[embedded].TextGroup"/>
           <Property Name="TextIndexOffset" Value="19"/>
           <Property Name="TextSource" Value="SingleText"/>
-          <Property Name="Top" Value="259"/>
+          <Property Name="Top" Value="258"/>
           <Property Name="Width" Value="353"/>
         </Control>
         <Control ClassId="0x00001007" Name="Numeric_7">
@@ -586,7 +592,7 @@
           <Property Name="TextIndexDatapoint" Value="None"/>
           <Property Name="TextSimulationValue" Value="0"/>
           <Property Name="TextSource" Value="SingleText"/>
-          <Property Name="Top" Value="208"/>
+          <Property Name="Top" Value="207"/>
           <Property Name="VirtualKey" Value="Source[local].VirtualKey[%embVirtualKey_5]"/>
           <Property Name="Width" Value="214"/>
         </Control>
@@ -624,18 +630,18 @@
           <Property Name="ForeColor" Value="240"/>
           <Property Name="Height" Value="80"/>
           <Property Name="KeyMatrixOffset" Value="None"/>
-          <Property Name="Left" Value="480"/>
+          <Property Name="Left" Value="283"/>
           <Property Name="PressedBitmapSource" Value="Source[embedded].Property[BitmapSource]"/>
           <Property Name="PressedBorder" Value="Source[local].Border[Mp_Button_pressed]"/>
           <Property Name="PressedTextSource" Value="Source[embedded].Property[TextSource]"/>
-          <Property Name="StatusDatapoint" Value="Source[global].Variable[DataSource.gMain.Input.Vis.StartButtonVisability]"/>
+          <Property Name="StatusDatapoint" Value="Source[global].Variable[DataSource.gMain.Input.Vis.ManualGoButtonVis]"/>
           <Property Name="StyleClass" Value="Source[relative:StyleGroup].StyleClass[MpButtonUp]"/>
           <Property Name="TextGroup" Value="Source[embedded].TextGroup"/>
           <Property Name="TextIndex" Value="22"/>
           <Property Name="TextIndexDatapoint" Value="None"/>
           <Property Name="TextSimulationValue" Value="0"/>
           <Property Name="TextSource" Value="SingleText"/>
-          <Property Name="Top" Value="925"/>
+          <Property Name="Top" Value="922"/>
           <Property Name="VirtualKey" Value="Source[local].VirtualKey[%embVirtualKey_235]"/>
           <Property Name="Width" Value="341"/>
         </Control>
@@ -649,7 +655,7 @@
           <Property Name="MaxDatapoint" Value="None"/>
           <Property Name="MaxValue" Value="6"/>
           <Property Name="MinDatapoint" Value="None"/>
-          <Property Name="MinValue" Value="None"/>
+          <Property Name="MinValue" Value="-6"/>
           <Property Name="SimulationValue" Value="0"/>
           <Property Name="StyleClass" Value="Source[relative:StyleGroup].StyleClass[Input]"/>
           <Property Name="TeachDatapoint" Value="None"/>
@@ -712,6 +718,80 @@
           <Property Name="Top" Value="22"/>
           <Property Name="Width" Value="289"/>
         </Control>
+        <Control ClassId="0x00001007" Name="Numeric_9">
+          <Property Name="AddFractionDigits" Value="2"/>
+          <Property Name="AlignmentHorizontal" Value="Center"/>
+          <Property Name="Border" Value="Source[local].Border[Mp_InputBorder]"/>
+          <Property Name="ControlID" Value="0"/>
+          <Property Name="Description" Value=""/>
+          <Property Name="Font" Value="Source[local].Font[MpButton]"/>
+          <Property Name="Height" Value="50"/>
+          <Property Name="Input" Value="True"/>
+          <Property Name="InputCancel" Value="Lost Focus"/>
+          <Property Name="InputComma" Value="Explicit"/>
+          <Property Name="InputConfirm" Value="Enter"/>
+          <Property Name="InputMinus" Value="Normal"/>
+          <Property Name="InputNext" Value="Enter"/>
+          <Property Name="InputStart" Value="Any Key"/>
+          <Property Name="InputTouchpad" Value="Source[local].TouchPad[MpNumPad]"/>
+          <Property Name="InputUpDown" Value="Disabled"/>
+          <Property Name="Left" Value="353"/>
+          <Property Name="MaxDatapoint" Value="None"/>
+          <Property Name="MaxValue" Value="6"/>
+          <Property Name="MinDatapoint" Value="None"/>
+          <Property Name="MinValue" Value="-6"/>
+          <Property Name="SimulationValue" Value="0"/>
+          <Property Name="StyleClass" Value="Source[relative:StyleGroup].StyleClass[MpDefault]"/>
+          <Property Name="TeachDatapoint" Value="None"/>
+          <Property Name="Top" Value="347"/>
+          <Property Name="ValueDatapoint" Value="Source[global].Variable[DataSource.gMain.Input.Vis.OscillationDistance]"/>
+          <Property Name="ValueMode" Value="Standard"/>
+          <Property Name="Width" Value="330"/>
+        </Control>
+        <Control ClassId="0x00001004" Name="Text_13">
+          <Property Name="AlignmentHorizontal" Value="Center"/>
+          <Property Name="ControlID" Value="0"/>
+          <Property Name="Description" Value=""/>
+          <Property Name="Font" Value="Source[local].Font[MpPads]"/>
+          <Property Name="Height" Value="126"/>
+          <Property Name="Left" Value="32"/>
+          <Property Name="Multiline" Value="Automatic"/>
+          <Property Name="SimulationIndex" Value="0"/>
+          <Property Name="SimulationValue" Value=""/>
+          <Property Name="StyleClass" Value="Source[relative:StyleGroup].StyleClass[MpBubbleText]"/>
+          <Property Name="TextGroup" Value="Source[embedded].TextGroup"/>
+          <Property Name="TextIndexOffset" Value="26"/>
+          <Property Name="TextSource" Value="SingleText"/>
+          <Property Name="Top" Value="327"/>
+          <Property Name="Width" Value="353"/>
+        </Control>
+        <Control ClassId="0x00001002" Name="Button_10">
+          <Property Name="AlignmentHorizontal" Value="Center"/>
+          <Property Name="BitmapAlignmentHorizontal" Value="Center"/>
+          <Property Name="BitmapIndexDatapoint" Value="None"/>
+          <Property Name="BitmapSource" Value="None"/>
+          <Property Name="Border" Value="Source[local].Border[Mp_Button_Control]"/>
+          <Property Name="ControlID" Value="0"/>
+          <Property Name="Description" Value=""/>
+          <Property Name="EmbVirtualKey" Value="Source[local].VirtualKey[%embVirtualKey_236]"/>
+          <Property Name="ForeColor" Value="240"/>
+          <Property Name="Height" Value="80"/>
+          <Property Name="KeyMatrixOffset" Value="None"/>
+          <Property Name="Left" Value="663"/>
+          <Property Name="PressedBitmapSource" Value="Source[embedded].Property[BitmapSource]"/>
+          <Property Name="PressedBorder" Value="Source[local].Border[Mp_Button_pressed]"/>
+          <Property Name="PressedTextSource" Value="Source[embedded].Property[TextSource]"/>
+          <Property Name="StatusDatapoint" Value="Source[global].Variable[DataSource.gMain.Input.Vis.ManualStopButtonVis]"/>
+          <Property Name="StyleClass" Value="Source[relative:StyleGroup].StyleClass[MpButtonUp]"/>
+          <Property Name="TextGroup" Value="Source[embedded].TextGroup"/>
+          <Property Name="TextIndex" Value="27"/>
+          <Property Name="TextIndexDatapoint" Value="None"/>
+          <Property Name="TextSimulationValue" Value="0"/>
+          <Property Name="TextSource" Value="SingleText"/>
+          <Property Name="Top" Value="923"/>
+          <Property Name="VirtualKey" Value="Source[local].VirtualKey[%embVirtualKey_236]"/>
+          <Property Name="Width" Value="341"/>
+        </Control>
       </Controls>
       <KeyMapping>
         <VirtualKey Name="%embVirtualKey_233">
@@ -739,8 +819,8 @@
               <Property Name="Description" Value=""/>
               <Property Name="Locking" Value="Never"/>
               <Property Name="Name" Value="Action_0"/>
-              <Property Name="SetValue" Value="1"/>
-              <Property Name="ValueDatapoint" Value="Source[global].Variable[DataSource.gMain.Input.Vis.StartProgramButton]"/>
+              <Property Name="SetValue" Value="0"/>
+              <Property Name="ValueDatapoint" Value="Source[global].Variable[DataSource.gMain.Input.Vis.ConfirmPopup]"/>
             </KeyAction>
           </KeyActions>
         </VirtualKey>
@@ -810,13 +890,12 @@
           <Property Name="Description" Value=""/>
           <Property Name="VirtualKey_LED" Value="False"/>
           <KeyActions>
-            <KeyAction ClassId="0x0000016B">
+            <KeyAction ClassId="0x00000161">
               <Property Name="CompletionDatapoint" Value="None"/>
               <Property Name="CompletionValue" Value="0"/>
               <Property Name="Description" Value=""/>
               <Property Name="Locking" Value="Never"/>
               <Property Name="Name" Value="Action_0"/>
-              <Property Name="ResetValue" Value="0"/>
               <Property Name="SetValue" Value="1"/>
               <Property Name="ValueDatapoint" Value="Source[global].Variable[DataSource.gMain.Input.Vis.ManualMoveButton]"/>
             </KeyAction>
@@ -834,6 +913,21 @@
               <Property Name="Name" Value="Action_0"/>
               <Property Name="SetValue" Value="1"/>
               <Property Name="ValueDatapoint" Value="Source[global].Variable[DataSource.gMain.Input.Vis.EStop]"/>
+            </KeyAction>
+          </KeyActions>
+        </VirtualKey>
+        <VirtualKey Name="%embVirtualKey_236">
+          <Property Name="Description" Value=""/>
+          <Property Name="VirtualKey_LED" Value="False"/>
+          <KeyActions>
+            <KeyAction ClassId="0x00000161">
+              <Property Name="CompletionDatapoint" Value="None"/>
+              <Property Name="CompletionValue" Value="0"/>
+              <Property Name="Description" Value=""/>
+              <Property Name="Locking" Value="Never"/>
+              <Property Name="Name" Value="Action_0"/>
+              <Property Name="SetValue" Value="0"/>
+              <Property Name="ValueDatapoint" Value="Source[global].Variable[DataSource.gMain.Input.Vis.ManualMoveButton]"/>
             </KeyAction>
           </KeyActions>
         </VirtualKey>
@@ -865,6 +959,19 @@
       <Property Name="VisibilityMode" Value="Outline"/>
       <Property Name="Z-Order" Value="2"/>
     </LayerRef>
+    <LayerRef Source="Source[local].Layer[ConfirmStartPopup]">
+      <Property Name="Description" Value=""/>
+      <Property Name="EditingMode" Value="Frozen"/>
+      <Property Name="Left" Value="0"/>
+      <Property Name="Name" Value="ConfirmStartPopup"/>
+      <Property Name="OutlineColor" Value="0"/>
+      <Property Name="OutlineDisplayControl" Value="False"/>
+      <Property Name="OutlineDisplayName" Value="True"/>
+      <Property Name="OutlineHatched" Value="False"/>
+      <Property Name="Top" Value="0"/>
+      <Property Name="VisibilityMode" Value="Hidden"/>
+      <Property Name="Z-Order" Value="3"/>
+    </LayerRef>
   </Layers>
   <MovementOrder>
     <MovementEntry Control="Source[embedded].Layer[Default].Control[Numeric_1]">
@@ -880,7 +987,7 @@
       <Property Name="Up" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmCode]"/>
     </MovementEntry>
     <MovementEntry Control="Source[embedded].Layer[Default].Control[Numeric_6]">
-      <Property Name="Down" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmTimestamp]"/>
+      <Property Name="Down" Value="Source[embedded].Layer[Default].Control[Numeric_9]"/>
       <Property Name="Left" Value="Source[embedded].Layer[Default].Control[Dropdown_1]"/>
       <Property Name="Right" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmCode]"/>
       <Property Name="Up" Value="Source[embedded].Layer[Default].Control[Numeric_1]"/>
@@ -896,6 +1003,12 @@
       <Property Name="Left" Value="Source[embedded].Layer[Default].Control[Numeric_3]"/>
       <Property Name="Right" Value="Source[embedded].Layer[Default].Control[Numeric_3]"/>
       <Property Name="Up" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmTimestamp]"/>
+    </MovementEntry>
+    <MovementEntry Control="Source[embedded].Layer[Default].Control[Numeric_9]">
+      <Property Name="Down" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmTimestamp]"/>
+      <Property Name="Left" Value="Source[embedded].Layer[Default].Control[Dropdown_1]"/>
+      <Property Name="Right" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmCode]"/>
+      <Property Name="Up" Value="Source[embedded].Layer[Default].Control[Numeric_6]"/>
     </MovementEntry>
     <MovementEntry Control="Source[local].Layer[AlarmPopup].Control[lbxAlarmMessage]">
       <Property Name="Down" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmCode]"/>
@@ -943,5 +1056,6 @@
     <TabSeqItem Index="11" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmName]"/>
     <TabSeqItem Index="12" Value="Source[local].Layer[AlarmPopup].Control[lbxAlarmCode]"/>
     <TabSeqItem Index="13" Value="Source[embedded].Layer[Default].Control[Numeric_2]"/>
+    <TabSeqItem Index="14" Value="Source[embedded].Layer[Default].Control[Numeric_9]"/>
   </TabSequence>
 </Page>

@@ -386,6 +386,7 @@
     <Source File="Layers\MpUserXSignMessageBox.layer"/>
     <Source File="Layers\AlarmPopup.layer"/>
     <Source File="Layers\EStopPopup.layer"/>
+    <Source File="Layers\ConfirmStartPopup.layer"/>
     <Source File="StyleSheets\Color.vcs"/>
     <Source File="StyleSheets\mapp.vcs"/>
     <Source File="Borders\Mp_AttentionOff.bdr"/>

@@ -16,6 +16,7 @@
     <Object Type="Package">mappView</Object>
     <Object Type="Package">mappCockpit</Object>
     <Object Type="Package">Motion</Object>
+    <Object Type="File">ALHistory.br</Object>
   </Objects>
   <Configuration ModuleId="X20CP1382">
     <AutomationRuntime Version="B4.73" />
@@ -23,5 +24,6 @@
     <DefaultTargetMemory Tasks="UserROM" />
     <Safety SafetyRelease="0.0" />
     <Vc FirmwareVersion="V4.72.0" />
+    <OnlineConfiguration Name="X20CP1382" DeviceType="TCPIP" DeviceParameters="/IF=tcpip /LOPO=11159 /SA=1" ConnectionParameters="/COMT=2500 /RT=1000 /AM=* /SDT=5 /DAIP=192.168.1.5 /REPO=11159 /ANSL=1 /PT=11169" Description="" />
   </Configuration>
 </Cpu>

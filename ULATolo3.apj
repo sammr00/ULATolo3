@@ -8,7 +8,7 @@
   <Project StoreRuntimeInProject="true" />
   <Variables DefaultInitValue="0" DefaultRetain="false" DefaultVolatile="true" />
   <TechnologyPackages>
-    <Acp10Arnc0 Version="5.10.1" />
-    <mapp Version="5.10.1" />
+    <mapp Version="5.11.2" />
+    <mappMotion McAcpDrv="5.11.2" McAcpSim="5.11.2" McAcpSys="5.11.2" Version="5.11.2" />
   </TechnologyPackages>
 </Project>
