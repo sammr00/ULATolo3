@@ -66,6 +66,8 @@ TYPE
 		AxialMove : AxialMove_Type;
 		IsPoweredAll : BOOL;
 		AtNominalFlag : BOOL;
+		NegLimit : BOOL;
+		PosLimit : BOOL;
 	END_STRUCT;
 	Machine_Type : 	STRUCT 
 		State : StateEnum;

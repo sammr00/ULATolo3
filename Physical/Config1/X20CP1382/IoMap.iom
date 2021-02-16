@@ -1,3 +1,5 @@
 VAR_CONFIG
 	::gMain.Input.Physical.StrainGauge AT %ID."X20AI1744".AnalogInput01;
+	::gMain.Machine.Motion.PosLimit AT %IX."X1".DigitalInput01;
+	::gMain.Machine.Motion.NegLimit AT %IX."X1".DigitalInput02;
 END_VAR

@@ -46,6 +46,7 @@
           <Text ID="216902" Value="Go"/>
           <Text ID="221587" Value="Oscillation Distance\n"/>
           <Text ID="223144" Value="Stop"/>
+          <Text ID="226325" Value="Error Reset All"/>
         </TextLayer>
         <TextLayer LanguageId="de">
           <Text ID="208297" Value="Text_1"/>
@@ -68,6 +69,7 @@
           <Text ID="216902" Value=""/>
           <Text ID="221587" Value="Text_1"/>
           <Text ID="223144" Value=""/>
+          <Text ID="226325" Value=""/>
         </TextLayer>
         <IndexMap>
           <Index ID="208297" Value="8"/>
@@ -90,6 +92,7 @@
           <Index ID="216902" Value="22"/>
           <Index ID="221587" Value="26"/>
           <Index ID="223144" Value="27"/>
+          <Index ID="226325" Value="30"/>
         </IndexMap>
       </TextGroup>
       <Controls>
@@ -792,6 +795,27 @@
           <Property Name="VirtualKey" Value="Source[local].VirtualKey[%embVirtualKey_236]"/>
           <Property Name="Width" Value="341"/>
         </Control>
+        <Control ClassId="0x00001002" Name="Button_6">
+          <Property Name="BitmapIndexDatapoint" Value="None"/>
+          <Property Name="BitmapSource" Value="None"/>
+          <Property Name="ControlID" Value="0"/>
+          <Property Name="Description" Value=""/>
+          <Property Name="EmbVirtualKey" Value="Source[local].VirtualKey[%embVirtualKey_12]"/>
+          <Property Name="Height" Value="42"/>
+          <Property Name="KeyMatrixOffset" Value="None"/>
+          <Property Name="Left" Value="1109"/>
+          <Property Name="PressedBitmapSource" Value="Source[embedded].Property[BitmapSource]"/>
+          <Property Name="PressedTextSource" Value="Source[embedded].Property[TextSource]"/>
+          <Property Name="StyleClass" Value="Source[relative:StyleGroup].StyleClass[ControlButton]"/>
+          <Property Name="TextGroup" Value="Source[embedded].TextGroup"/>
+          <Property Name="TextIndex" Value="30"/>
+          <Property Name="TextIndexDatapoint" Value="None"/>
+          <Property Name="TextSimulationValue" Value="0"/>
+          <Property Name="TextSource" Value="SingleText"/>
+          <Property Name="Top" Value="403"/>
+          <Property Name="VirtualKey" Value="Source[local].VirtualKey[%embVirtualKey_12]"/>
+          <Property Name="Width" Value="152"/>
+        </Control>
       </Controls>
       <KeyMapping>
         <VirtualKey Name="%embVirtualKey_233">
@@ -928,6 +952,22 @@
               <Property Name="Name" Value="Action_0"/>
               <Property Name="SetValue" Value="0"/>
               <Property Name="ValueDatapoint" Value="Source[global].Variable[DataSource.gMain.Input.Vis.ManualMoveButton]"/>
+            </KeyAction>
+          </KeyActions>
+        </VirtualKey>
+        <VirtualKey Name="%embVirtualKey_12">
+          <Property Name="Description" Value=""/>
+          <Property Name="VirtualKey_LED" Value="False"/>
+          <KeyActions>
+            <KeyAction ClassId="0x0000016B">
+              <Property Name="CompletionDatapoint" Value="None"/>
+              <Property Name="CompletionValue" Value="0"/>
+              <Property Name="Description" Value=""/>
+              <Property Name="Locking" Value="Never"/>
+              <Property Name="Name" Value="Action_0"/>
+              <Property Name="ResetValue" Value="0"/>
+              <Property Name="SetValue" Value="1"/>
+              <Property Name="ValueDatapoint" Value="Source[global].Variable[DataSource.gMain.Machine.Motion.ErrorResetAll]"/>
             </KeyAction>
           </KeyActions>
         </VirtualKey>

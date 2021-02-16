@@ -23,11 +23,11 @@ PROGRAM _INIT
 //	
 //
 //	
-//	gMain.Machine.Motion.MpAxisBasicPar[Axial].Home.Mode:=mpAXIS_HOME_MODE_ABSOLUTE;
-//	gMain.Machine.Motion.MpAxisBasicPar[Axial].Home.Position:=1238.54;						//0 position is -610.77
-//	
-//	gMain.Machine.Motion.MpAxisBasicPar[SideLoad].Home.Mode:=mpAXIS_HOME_MODE_ABSOLUTE;
-//	gMain.Machine.Motion.MpAxisBasicPar[SideLoad].Home.Position:=12888.441;
+	gMain.Machine.Motion.MpAxisBasicPar[Axial].Homing.Mode := mcHOMING_ABSOLUTE;
+	gMain.Machine.Motion.MpAxisBasicPar[Axial].Homing.Position := 1279.0416;						//0 position is -610.77
+	
+	gMain.Machine.Motion.MpAxisBasicPar[SideLoad].Homing.Mode := mcHOMING_ABSOLUTE;
+	gMain.Machine.Motion.MpAxisBasicPar[SideLoad].Homing.Position := 4069.2;
 
 	
 	
@@ -37,13 +37,17 @@ PROGRAM _INIT
 	gMain.Machine.Motion.MpAxisBasic_FB[Axial].Parameters := ADR(gMain.Machine.Motion.MpAxisBasicPar[Axial]);
 	//gMain.Machine.Motion.MpAxisBasic_FB[Axial].Axis := ADR(gAxisAxial);
 	
-	gMain.Machine.Motion.MpAxisBasic_FB[SideLoad].MpLink :=ADR(gAxisBasicSideLoad);
+	gMain.Machine.Motion.AxialMove.MC_MoveAdditive_Axial.Axis := ADR(gAxisBasicAxial);
+	
+	gMain.Machine.Motion.MpAxisBasic_FB[SideLoad].MpLink := ADR(gAxisBasicSideLoad);
 	gMain.Machine.Motion.MpAxisBasic_FB[SideLoad].Enable := TRUE;
 	gMain.Machine.Motion.MpAxisBasic_FB[SideLoad].Parameters := ADR(gMain.Machine.Motion.MpAxisBasicPar[SideLoad]);
 	//gMain.Machine.Motion.MpAxisBasic_FB[SideLoad].Axis := ADR(gAxisSideLoad);
 	
+	gMain.Machine.Motion.SideLoad.MC_MoveAdditive_SideLoad.Axis := ADR(gAxisBasicSideLoad);
+	
 	gMain.Machine.Motion.SideLoad.MC_TorqueControl_FB.Axis := ADR(gAxisBasicSideLoad);
-	gMain.Machine.Motion.SideLoad.MC_TorqueControl_FB.TorqueRamp := 0.3;
+	gMain.Machine.Motion.SideLoad.MC_TorqueControl_FB.TorqueRamp := 0.1;
 	gMain.Machine.Motion.SideLoad.MC_TorqueControl_FB.Velocity := 10;
 	gMain.Machine.Motion.SideLoad.MC_TorqueControl_FB.Acceleration := 10;
 	
@@ -52,14 +56,14 @@ PROGRAM _INIT
 	
 //	gMain.Machine.Motion.MpAxisBasicPar[SideLoad].CyclicRead.TorqueMode:=mpAXIS_READ_CYCLIC;
 	
-	gMain.Output.Vis.LoadCellScaleFactor:= (100.0/-307482);
-	gMain.Machine.Motion.SideLoad.ScalingFactor := 0.0034;
+	gMain.Output.Vis.LoadCellScaleFactor:= -0.0003685467464693222;
+	gMain.Machine.Motion.SideLoad.ScalingFactor := 0.00365;
 	
 	gMain.Machine.Motion.MpAxisBasicPar[Axial].Jog.Velocity:=25.4;
 	
 	
 	//Data Logging
-	gMain.Services.MpDataRecorder_FB.DeviceName := ADR('Temp');
+	gMain.Services.MpDataRecorder_FB.DeviceName := ADR('PLC');
 	gMain.Services.MpDataRecorder_FB.RecordMode := mpDATA_RECORD_MODE_VALUE;
 	gMain.Services.MpDataRecorder_FB.MpLink := ADR(gDataRecorder);
 	gMain.Services.MpDataRecorder_FB.Enable :=  TRUE;
@@ -253,12 +257,13 @@ PROGRAM _CYCLIC
 	
 	//Torque Control Side Load
 	gMain.Input.Vis.NominalPosition :=LREAL_TO_REAL(gMain.Machine.Motion.MpAxisBasic_FB[Axial].Position)+gMain.Input.Vis.AutoCommandedAxialPosition;
-	gMain.Output.Vis.DisplayedForceFeedback:= (gMain.Input.Physical.StrainGauge-16275)*gMain.Output.Vis.LoadCellScaleFactor;
+	gMain.Output.Vis.DisplayedForceFeedback := (gMain.Input.Physical.StrainGauge-32858)*gMain.Output.Vis.LoadCellScaleFactor;
 	//gMain.Machine.Motion.SideLoad.TorqueScaled:=gMain.Output.Vis.DisplayedForceFeedback*gMain.Machine.Motion.SideLoad.ScalingFactor;
+	
+	gMain.Output.Vis.CalculatedForce:=-1957.5693+(240.0518*(gMain.Input.Vis.NominalPosition/25.4))-(6.3530*((gMain.Input.Vis.NominalPosition/25.4))**2);
 	
 	IF gMain.Input.Vis.StartProgramButton AND NOT gMain.Machine.Motion.AtNominalFlag THEN
 		//Force Calculation
-		gMain.Output.Vis.CalculatedForce:=-1957.5693+(240.0518*(gMain.Input.Vis.NominalPosition/25.4))-(6.3530*((gMain.Input.Vis.NominalPosition/25.4))**2);
 		gMain.Machine.Motion.SideLoad.TorqueScaled:=gMain.Output.Vis.CalculatedForce*gMain.Machine.Motion.SideLoad.ScalingFactor;
 		
 		gMain.Machine.Motion.AxialMove.MC_MoveAdditive_Axial.Distance := gMain.Input.Vis.AutoCommandedAxialPosition;
@@ -276,9 +281,21 @@ PROGRAM _CYCLIC
 		gMain.Machine.Motion.AxialMove.MC_MoveAdditive_Axial.Execute := FALSE;
 	END_IF;
 	
+	//Data Logging
+	IF gMain.Services.MpDataRecorder_FB.Error THEN
+		gMain.Services.MpDataRecorder_FB.ErrorReset := TRUE;
+		gMain.Services.MpDataRecorder_FB.Record := FALSE;
+	ELSIF gMain.Services.MpDataRecorder_FB.ErrorReset OR (gMain.Machine.State > Homing AND NOT gMain.Services.MpDataRecorder_FB.Record) THEN
+		gMain.Services.MpDataRecorder_FB.ErrorReset := FALSE;
+		gMain.Services.MpDataRecorder_FB.Record := TRUE;
+	END_IF;
+	
+	gMain.Services.MpDataRegPar();
+	gMain.Services.MpDataRecorder_FB();
+	
 	
 	//EStop Logic	
-	IF gMain.Input.Vis.EStop THEN
+	IF gMain.Input.Vis.EStop OR NOT gMain.Machine.Motion.MpAxisBasic_FB[Axial].Info.DigitalInputsStatus.DriveEnable OR NOT gMain.Machine.Motion.MpAxisBasic_FB[SideLoad].Info.DigitalInputsStatus.DriveEnable THEN
 		gMain.Input.Vis.EStopPopup:=0;
 		FOR i0:=DINT_TO_USINT(Axial) TO DINT_TO_USINT(SideLoad) DO
 		
@@ -295,17 +312,12 @@ PROGRAM _CYCLIC
 		gMain.Machine.Motion.Mc_StopFB[i0].Execute:=FALSE;
 	END_IF;
 		
-	//Data Logging
-	IF gMain.Services.MpDataRecorder_FB.Error THEN
-		gMain.Services.MpDataRecorder_FB.ErrorReset := TRUE;
-		gMain.Services.MpDataRecorder_FB.Record := FALSE;
-	ELSIF gMain.Services.MpDataRecorder_FB.ErrorReset OR (gMain.Machine.State > Homing AND NOT gMain.Services.MpDataRecorder_FB.Record) THEN
-		gMain.Services.MpDataRecorder_FB.ErrorReset := FALSE;
-		gMain.Services.MpDataRecorder_FB.Record := TRUE;
+	//Limit Switches
+	IF gMain.Machine.Motion.PosLimit OR gMain.Machine.Motion.NegLimit THEN
+		gMain.Machine.Motion.SideLoad.TorqueScaled := 0.0;
+		gMain.Machine.Motion.AxialMove.MC_MoveAdditive_Axial.Execute := FALSE;
+		gMain.Machine.Motion.SideLoad.MC_MoveAdditive_SideLoad.Execute := FALSE;
 	END_IF;
-	
-	gMain.Services.MpDataRegPar();
-	gMain.Services.MpDataRecorder_FB();
 	
 		
 		
@@ -319,7 +331,7 @@ PROGRAM _CYCLIC
 	gMain.Machine.Motion.SideLoad.MC_TorqueControl_FB(Execute := gMain.Machine.Motion.SideLoad.EnableCyclicTorque, Torque := gMain.Machine.Motion.SideLoad.TorqueScaled);
 		
 	//Move Addative
-	gMain.Machine.Motion.AxialMove.MC_MoveAdditive_Axial(Velocity := 25.4, Acceleration := 25.4, Deceleration := 25.4);
+	gMain.Machine.Motion.AxialMove.MC_MoveAdditive_Axial(Velocity := 100, Acceleration := 100, Deceleration := 100);
 	gMain.Machine.Motion.SideLoad.MC_MoveAdditive_SideLoad(Velocity := 12.7, Acceleration := 25.4, Deceleration := 25.4);
 	
 	//Motion Function Call
